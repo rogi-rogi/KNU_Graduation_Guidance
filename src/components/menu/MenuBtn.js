@@ -1,12 +1,12 @@
-import "./MenuBtn.scss";
+import "./MenuBar.scss";
 
-const MenuBtn = ({ title, handler }) => {
+const MenuBtn = ({ id, title, handler }) => {
   return (
-    <div style={{ zIndex: 3 }}>
+    <div>
       <button
         className="menu-btn"
-        onClick={(e) => handler.onClick(e)}
-        onMouseOver={(e) => handler.onMouseOver(e)}
+        onClick={(e) => handler.onClick(e.target, id)}
+        onMouseOver={(e) => handler.onMouseOver(e.target)}
         onMouseLeave={handler.onMouseLeave}
       >
         {title}

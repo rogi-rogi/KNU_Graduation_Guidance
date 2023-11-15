@@ -1,52 +1,68 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./MenuBar.scss";
 import MenuBtn from "./MenuBtn";
 
-const MenuBar = () => {
-  const titles = ["소개", "학점계산", "개발과정"];
-  const [mouseOver, setMouseOver] = useState(false);
-  const initStyle = { left: "20px", width: "0px", opacity: 0 };
-  const [selectEffect, setSelectEffect] = useState(initStyle);
-  const [behindEffect, setBehindEffect] = useState(initStyle);
-  const [scrollHeight, setScrollHeight] = useState(0);
-  useEffect(() => {
-    //
-    const handleScroll = () => {
-      setScrollHeight(window.scrollY);
-      // resize에 따른 effect 위치 조정 필요
-    };
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
+const MenuBar = ({ titles, handleChangePage }) => {
+  const [selectEffect, setSelectEffect] = useState({
+    target: null,
+    left: "20px",
+    width: "0px",
+    opacity: 0,
+  });
 
+  const [behindEffect, setBehindEffect] = useState({
+    target: null,
+    left: "20px",
+    width: "0px",
+    opacity: 0,
+  });
+
+  const [scrollHeight, setScrollHeight] = useState(0);
+
+  const handleMenuBtnOnClick = (target, id) => {
+    const { left, width } = target.getBoundingClientRect();
+    setSelectEffect({ target: target, left, width, opacity: 1 });
+    handleChangePage(id);
+  };
+
+  const handleMenuBtnOver = (target) => {
+    const { left, width } = target.getBoundingClientRect();
+    setBehindEffect({ target, left, width, opacity: 1 });
+  };
+
+  const handleMenuBtnLeave = () => {
+    setBehindEffect((prev) => ({ ...prev, opacity: 0 }));
+  };
+
+  const handleScroll = () => {
+    setScrollHeight(window.scrollY);
+  };
+
+  const handleResize = () => {
+    if (selectEffect.target) {
+      const updatedLeft = selectEffect.target.getBoundingClientRect().left;
+      setSelectEffect((prev) => ({ ...prev, left: `${updatedLeft}px` }));
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
     };
   }, []);
-  const handleMenuBtnOnClick = (e) => {
-    const target = e.target.getBoundingClientRect();
-    setSelectEffect({ left: target.left, width: target.width, opacity: 1 });
-  };
-  const handleMenuBtnOver = (e) => {
-    const target = e.target.getBoundingClientRect();
-    if (!mouseOver) setMouseOver(true);
-    setBehindEffect({ left: target.left, width: target.width, opacity: 1 });
-  };
-  const handleMenuBtnLeave = () => {
-    if (mouseOver) {
-      setMouseOver(false);
-    }
-    setBehindEffect({ ...selectEffect, opacity: 0 });
-  };
 
-  const bntHandler = {
-    onClick: handleMenuBtnOnClick,
-    onMouseOver: handleMenuBtnOver,
-    onMouseLeave: handleMenuBtnLeave,
-  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [selectEffect.target]);
+
   const minTop = 10;
   const menuBarTop = Math.max(30 - scrollHeight, minTop);
   const scrollOpacity = Math.max(0.75, 1 - window.scrollY / 1200);
+
   return (
     <div
       className="main-menubar-wrapper"
@@ -54,10 +70,19 @@ const MenuBar = () => {
     >
       <div className="menu-btn-list">
         {titles.map((title, idx) => (
-          <MenuBtn id={idx} title={title} handler={bntHandler} />
+          <MenuBtn
+            key={idx}
+            id={idx}
+            title={title}
+            handler={{
+              onClick: handleMenuBtnOnClick,
+              onMouseOver: handleMenuBtnOver,
+              onMouseLeave: handleMenuBtnLeave,
+            }}
+          />
         ))}
-        <div className="select-effect" style={{ ...selectEffect }}></div>
-        <div className="behind-effect" style={{ ...behindEffect }}></div>
+        <div className="select-effect" style={selectEffect}></div>
+        <div className="behind-effect" style={behindEffect}></div>
       </div>
     </div>
   );

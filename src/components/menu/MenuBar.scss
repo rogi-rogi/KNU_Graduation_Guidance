@@ -10,15 +10,32 @@
 
 .menu-btn-list {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-
+  min-width: min-content;
   width: 100%;
   height: 60px;
   margin: 20px 20px;
   background-color: #5a91f7;
 
   border-radius: 10em;
+}
+
+.menu-btn {
+  white-space: nowrap;
+  position: relative;
+  height: 50px;
+  padding: 0 20px;
+  box-sizing: content-box;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  transition: background-color 0.3s;
+  user-select: none;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .select-effect,
@@ -44,5 +61,5 @@
 }
 
 .test {
-  opacity: 1;
+  transform: scale(0.9);
 }

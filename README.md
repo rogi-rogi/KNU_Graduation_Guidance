@@ -35,3 +35,13 @@
 
 - node-sass : "^9.0.0"
   > SCSS를 사용하여 스타일을 관리하기 위한 패키지 입니다.
+
+## push
+
+```
+git push origin https://github.com/rogi-rogi/KNU_Graduation_Guidance.git main
+
+git commit -m "update"
+
+git push
+```
