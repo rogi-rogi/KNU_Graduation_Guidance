@@ -1,10 +1,17 @@
-# KNU Graduation Guidance
+# 🏫 KNU Graduation Guidance
 
-강남대학교 졸업 여건을 확인할 수 있도록 도움을 주는 홈페이지 입니다.
+강남대학교(Kangnam University) 졸업 여건을 미리 확인할 수 있도록 도움을 주는 홈페이지 입니다.
 
-<hr><br>
+> 강남대학교 소프트웨어학과 웹개발응용 수업반
+> 개발기간 : 2023.11 ~ 12
 
-## 학점 계산 시뮬레이션
+<hr/><br>
+
+## 🤝 Member
+
+<hr/><br>
+
+## 🔢 학점 계산 시뮬레이션
 
 전공과, 학번에 따라 졸업에 필요한 학점이 다릅니다.
 또한, 전과 또는 복수전공시 인정되는 학점과 필요한 학점을 미리 알아보기 어렵습니다.
@@ -17,9 +24,9 @@
 .
 .
 
-<hr><br>
+<hr/><br>
 
-## KNU i로드맵 가이드 (미확정)
+## 👆 KNU i로드맵 가이드 (미확정)
 
 다른 사람은 i로드맵을 어떻게 작성했을까? 선행과목은 무엇일까? 라는 고민을 해결하기 위해 게시판에 익명으로 자신의 i로드맵을 올려 정보를 공유하기 위한 게시판 입니다.
 
@@ -29,19 +36,60 @@
 .
 .
 
-<hr><br>
+<hr/><br>
 
-## Development Enviroment
+## 📚 Stack
 
-- node-sass : "^9.0.0"
-  > SCSS를 사용하여 스타일을 관리하기 위한 패키지 입니다.
+### 💻 PL
 
-## push
+![JavaScript](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=0D1117)
 
-```
-git push origin https://github.com/rogi-rogi/KNU_Graduation_Guidance.git main
+### 🎨 Frontend
 
-git commit -m "update"
+![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=React&logoColor=0D1117)
+![Styled-Components](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=Styled-Components&logoColor=white)
 
-git push
+### ⚙️ Enviroment
+
+![Visual Studio Code](https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white)
+![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+
+<hr/><br>
+
+## 🗂️ Directory
+
+```bash
+📦KNU_Graduation_Guidance
+ ┣ 📂node_modules
+ ┣ 📂public
+ ┃ ┣ index.html
+ ┃ ┗ robots.txt
+ ┣ 📂src
+ ┃ ┣ 📂components
+ ┃ ┃ ┗ 📂menu
+ ┃ ┃ ┃ ┣ MenuBar.js
+ ┃ ┃ ┃ ┣ MenuBar.scss
+ ┃ ┃ ┃ ┗ MenuBtn.js
+ ┃ ┣ 📂context
+ ┃ ┃ ┗ index.js
+ ┃ ┣ 📂pages
+ ┃ ┃ ┣ CalcGraduation.js
+ ┃ ┃ ┣ Development.js
+ ┃ ┃ ┣ Home.js
+ ┃ ┃ ┣ Home.scss
+ ┃ ┃ ┣ Intro.js
+ ┃ ┃ ┣ Page.scss
+ ┃ ┃ ┗ TestPage.js
+ ┃ ┣ 📂services
+ ┃ ┣ App.css
+ ┃ ┣ App.js
+ ┃ ┣ App.test.js
+ ┃ ┣ index.css
+ ┃ ┣ index.js
+ ┃ ┣ reportWebVitals.js
+ ┃ ┗ setupTests.js
+ ┣ .gitignore
+ ┣ package.json
+ ┣ README.md
+ ┗ yarn.lock
 ```
