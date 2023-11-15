@@ -6,20 +6,29 @@
 > 
 > 개발기간 : 2023.11 ~ 12
 
+
 <hr/><br>
 
 ## 🤝 Member
 
+| 김영록 | 이건이 | 차승준 |
+| :---: | :---: | :---: |
+| <img src="https://avatars.githubusercontent.com/u/95115004?v=4" alt="김영록 프로필" width="200" height="200"> | (이미지2) | (이미지3) |
+| [@rogi-rogi](https://github.com/rogi-rogi) | [@geoni-ara](https://github.com/geoni) | [@seungjuncha](https://github.com/seungjuncha) |
+| 기획, 개발 | 디자인 | 디자인 |
+
 <hr/><br>
 
-## 🔢 학점 계산 시뮬레이션
+## 👋 Intro
+
+### 🔢 학점 계산 시뮬레이션
 
 전공과, 학번에 따라 졸업에 필요한 학점이 다릅니다.
 또한, 전과 또는 복수전공시 인정되는 학점과 필요한 학점을 미리 알아보기 어렵습니다.
 
 이러한 고민을 해결하기 위해 자신의 학점을 입력해 앞으로의 전공 선택 및 수업선택에 도움을 받을 수 있습니다.
 
-### how use?
+#### how use?
 
 .
 .
@@ -27,15 +36,16 @@
 
 <hr/><br>
 
-## 👆 KNU i로드맵 가이드 (미확정)
+### 👆 KNU i로드맵 가이드 (미확정)
 
 다른 사람은 i로드맵을 어떻게 작성했을까? 선행과목은 무엇일까? 라는 고민을 해결하기 위해 게시판에 익명으로 자신의 i로드맵을 올려 정보를 공유하기 위한 게시판 입니다.
 
-### how use?
+#### how use?
 
 .
 .
 .
+
 
 <hr/><br>
 
@@ -45,15 +55,44 @@
 
 ![JavaScript](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=0D1117)
 
-### 🎨 Frontend
+### 🌐 Frontend
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=0D1117)
 ![Styled_Components](https://img.shields.io/badge/Styled_Components-DB7093?style=for-the-badge&logo=Styled-Components&logoColor=white)
+
+### 🎨 UI/UX
+
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 ### ⚙️ Enviroment
 
 ![VSCode](https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+<hr/><br>
+
+## 🛤️ Guide
+
+### init
+```cmd
+npm install -g yarn
+```
+
+### git Clone
+``` bash
+git clone https://github.com/rogi-rogi/KNU_Graduation_Guidance.git
+
+cd KNU_Graduation_Guidance
+```
+
+
+### Frontend
+``` cmd
+yarn
+
+yarn start
+```
+
 
 <hr/><br>
 
