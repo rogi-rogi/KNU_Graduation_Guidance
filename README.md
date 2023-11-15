@@ -46,13 +46,13 @@
 
 ### 🎨 Frontend
 
-![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=React&logoColor=0D1117)
-![Styled-Components](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=Styled-Components&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=0D1117)
+![Styled_Components](https://img.shields.io/badge/Styled_Components-DB7093?style=for-the-badge&logo=Styled-Components&logoColor=white)
 
 ### ⚙️ Enviroment
 
-![Visual Studio Code](https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white)
-![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![VSCode](https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 <hr/><br>
 
