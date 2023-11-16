@@ -12,9 +12,9 @@
 ## 🤝 Member
 
 | 김영록 | 이건이 | 차승준 |
-| :---: | :---: | :---: |
-| <img src="https://avatars.githubusercontent.com/u/95115004?v=4" alt="김영록 프로필" width="150" height="150"> |<img src="https://avatars.githubusercontent.com/u/8115130?v=4" alt="이건이 프로필" width="150" height="150"> | <img src="https://avatars.githubusercontent.com/u/149284997?v=4" alt="차승 프로필" width="150" height="150">  |
-| [@rogi-rogi](https://github.com/rogi-rogi) | [@geoni-ara](https://github.com/geoni) | [@seungjuncha](https://github.com/seungjuncha) |
+| :-: | :-: | :-: |
+| <img src="https://avatars.githubusercontent.com/u/95115004?v=4" alt="김영록 프로필" width="150" height="150"> |<img src="https://avatars.githubusercontent.com/u/8115130?v=4" alt="이건이 프로필" width="150" height="150"> | <img src="https://avatars.githubusercontent.com/u/149284997?v=4" alt="차승준 프로필" width="150" height="150">  |
+| [@rogi-rogi](https://github.com/rogi-rogi) | [@geoni-ara](https://github.com/geoni) | [@seungjuncha](https://github.com/seungjuncha) | 
 | 기획, 개발 | 디자인 | 디자인 |
 
 <hr/><br>
