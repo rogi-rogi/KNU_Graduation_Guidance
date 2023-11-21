@@ -18,6 +18,7 @@ const MenuBar = ({ titles, handleChangePage }) => {
   });
 
   const [scrollHeight, setScrollHeight] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleMenuBtnOnClick = (target, id) => {
     const { left, width } = target.getBoundingClientRect();
@@ -37,27 +38,28 @@ const MenuBar = ({ titles, handleChangePage }) => {
   const handleScroll = () => {
     setScrollHeight(window.scrollY);
   };
-
-  const handleResize = () => {
+  const handleRePosition = () => {
     if (selectEffect.target) {
       const updatedLeft = selectEffect.target.getBoundingClientRect().left;
       setSelectEffect((prev) => ({ ...prev, left: `${updatedLeft}px` }));
     }
   };
+  const handleWindowWidthResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleWindowWidthResize);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleWindowWidthResize);
     };
   }, []);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [selectEffect.target]);
+    handleRePosition();
+  }, [windowWidth]);
 
   const minTop = 10;
   const menuBarTop = Math.max(30 - scrollHeight, minTop);
