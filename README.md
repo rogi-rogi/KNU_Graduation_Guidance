@@ -2,7 +2,7 @@
 
 강남대학교(Kangnam University) 졸업 여건을 미리 확인할 수 있도록 도움을 주는 홈페이지 입니다.
 
-> 강남대학교 소프트웨어학과 웹개발응용 수업반
+> 강남대학교 소프트웨어학과 웹개발응용 자율프로젝트
 > 
 > 개발기간 : 2023.11 ~ 12
 
@@ -13,9 +13,11 @@
 
 | 김영록 | 이건이 | 차승준 | 
 | :-------------------------: | :-------------------------: | :-------------------------: |
-| <img src="https://avatars.githubusercontent.com/u/95115004?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/8115130?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/149284997?v=4" width="150px"/> |
+| <img src="https://avatars.githubusercontent.com/u/95115004?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/8115130?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/151488428?v=4" width="150px"/> |
 | [@rogi-rogi](https://github.com/rogi-rogi) | [@geoni-ara](https://github.com/geoni) | [@seungjuncha](https://github.com/seungjuncha) | 
 | <p style="white-space:nowrap">기획, 개발</p> | 디자인 | 디자인 |
+
+
 
 <hr/><br>
 
