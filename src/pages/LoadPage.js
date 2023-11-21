@@ -1,5 +1,7 @@
+import "./Page.scss";
+
 const LoadPage = () => {
-  return <div>로딩ing...</div>;
+  return <div className="page-load">로딩ing...</div>;
 };
 
 export default LoadPage;

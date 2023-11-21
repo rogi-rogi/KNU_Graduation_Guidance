@@ -2,12 +2,11 @@ import "./MenuBar.scss";
 
 const MenuBtn = ({ id, title, handler }) => {
   return (
-    <div>
+    <div className="effect-path" onMouseLeave={handler.onMouseLeave}>
       <button
         className="menu-btn"
-        onClick={(e) => handler.onClick(e.target, id)}
-        onMouseOver={(e) => handler.onMouseOver(e.target)}
-        onMouseLeave={handler.onMouseLeave}
+        onClick={() => handler.onClick(id)}
+        onMouseOver={() => handler.onMouseOver(id)}
       >
         {title}
       </button>

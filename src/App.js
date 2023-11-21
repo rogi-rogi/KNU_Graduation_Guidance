@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Home from "./pages/Home";
 import LoadPage from "./pages/LoadPage";
+import Home from "./pages/Home";
 
 const App = () => {
   const [isLoad, setIsLoad] = useState(true);
+  const LOAD_MIN_SEC = 1000;
+
   useEffect(() => {
     const load = () =>
       setTimeout(() => {
         setIsLoad(false);
-      }, 1000);
+      }, LOAD_MIN_SEC);
     load();
+    return () => load();
   }, []);
 
   return (
     <div className="App">
-      <div>
-        {isLoad && <LoadPage />}
-        {!isLoad && <Home />}
-      </div>
+      {/* {isLoad && <LoadPage />} */}
+      <Home />
     </div>
   );
 };

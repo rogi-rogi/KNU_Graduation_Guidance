@@ -1,25 +1,30 @@
-import "./Home.scss";
+import { useState } from "react";
 import MenuBar from "../components/menu/MenuBar";
-// import Context from "../context";
 import Intro from "./Intro";
 import CalcGraduation from "./CalcGraduation";
-import { useState } from "react";
-import Development from "./Development";
+import Board from "./Board";
 import TestPage from "./TestPage";
 
 const Home = () => {
-  const titles = ["소개", "학점계산", "개발과정", "Teeeeeeeeeeeeeeeeest"];
-  const [page, setPage] = useState(0);
+  const titles = ["소개", "학점계산", "게시판", "Test"];
+  const pages = [<Intro />, <CalcGraduation />, <Board />, <TestPage />];
+  const pageList = titles.map((title, idx) => ({ title, page: pages[idx] }));
+
+  const [pageNum, setPageNum] = useState(0);
+
   const handleChangePage = (id) => {
-    setPage(id);
+    setPageNum(id);
   };
+
   return (
-    <div className="page-home-wrapper">
-      <MenuBar titles={titles} handleChangePage={handleChangePage} />
-      {page === 0 && <Intro />}
-      {page === 1 && <CalcGraduation />}
-      {page === 2 && <Development />}
-      {page === 3 && <TestPage />}
+    // <div className="page-home-wrapper">
+    <div>
+      <MenuBar
+        titles={titles}
+        pageNum={pageNum}
+        handleChangePage={handleChangePage}
+      />
+      {pageList[pageNum].page}
     </div>
   );
 };
