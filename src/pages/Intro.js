@@ -32,7 +32,7 @@ const Intro = () => {
       <div
         className="page-content-header"
         style={{
-          backgroundImage: `url("../../assets/images/KNU_MAIN.jpg")`,
+          backgroundImage: `url("/assets/images/KNU_MAIN.jpg")`,
         }}
       >
         <div className="header-title">

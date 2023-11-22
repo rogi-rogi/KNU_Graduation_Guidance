@@ -1,3 +1,4 @@
+import "./Page.scss";
 import { useState } from "react";
 import MenuBar from "../components/menu/MenuBar";
 import Intro from "./Intro";
@@ -17,8 +18,7 @@ const Home = () => {
   };
 
   return (
-    // <div className="page-home-wrapper">
-    <div>
+    <div className="home-wrapper">
       <MenuBar
         titles={titles}
         pageNum={pageNum}

@@ -35,7 +35,8 @@ const MenuBar = ({ titles, pageNum, handleChangePage }) => {
   let menuBarTopPadding = Math.max(30 - scrollHeight / 5, minTop);
   let scrollOpacity = Math.max(0.75, 1 - scrollHeight / 1200);
   let menuBarColor;
-  if (scrollHeight >= 800) menuBarColor = "rgba(198, 225, 255, 0.7)";
+  if (pageNum === 0 && scrollHeight >= 800)
+    menuBarColor = "rgba(198, 225, 255, 0.7)";
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResizeWindow);
