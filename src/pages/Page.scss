@@ -87,4 +87,50 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  .calc-box-container-std1 {
+    display: inline-grid;
+    grid-template-columns: minmax(80px, 1.5fr) repeat(5, minmax(60px, 1fr));
+    grid-template-rows: 30px repeat(10, minmax(30px, 1fr));
+
+    .header {
+      background-color: gray;
+      text-align: center;
+      line-height: 30px;
+    }
+  }
+}
+
+.list-box-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 100%;
+  gap: 10px;
+}
+
+.list-box {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  background-color: #5a91f7;
+  box-sizing: content-box;
+  border-radius: 5em;
+  label {
+    line-height: 30px;
+  }
+  select {
+    width: 130px;
+    height: 28px;
+    border: 1px solid rgba(198, 225, 255, 0.7);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-left: 3px;
+    &:focus {
+      border-color: rgb(14, 90, 255);
+      outline: 1px solid rgba(198, 225, 255, 0.7);
+      background-color: rgba(198, 225, 255, 0.7);
+    }
+  }
 }

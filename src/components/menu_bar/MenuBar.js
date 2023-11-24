@@ -40,7 +40,7 @@ const MenuBar = ({ titles, pageNum, handleChangePage }) => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResizeWindow);
-    handleMenuBtnOnClick(0);
+    handleMenuBtnOnClick(pageNum);
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResizeWindow);
