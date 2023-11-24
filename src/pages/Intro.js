@@ -1,6 +1,8 @@
-import { useEffect } from "react";
 import "./Page.scss";
-import { useState } from "react";
+
+import IntroHeader from "../components/intro/IntroHeader.js";
+import IntroCard from "../components/intro/IntroCard.js";
+import DevSlide from "../components/intro/DevSlide.js";
 
 const Intro = () => {
   const introCard = [
@@ -19,45 +21,16 @@ const Intro = () => {
       content: "구독과 좋아요 알림설정",
     },
   ];
-  const [load, setLoad] = useState(false);
-  useEffect(() => {
-    const load = () => {
-      setTimeout(() => setLoad(true), 1500);
-    };
-    load();
-    return () => load();
-  }, []);
   return (
     <div className="page">
-      <div
-        className="page-content-header"
-        style={{
-          backgroundImage: `url("/assets/images/KNU_MAIN.jpg")`,
-        }}
-      >
-        <div className="header-title">
-          <h1 style={{ opacity: load ? 1 : 0 }}>pz write intro header</h1>
-          <h1 style={{ opacity: load ? 1 : 0 }}>pz write sub intro header</h1>
-        </div>
-      </div>
+      <IntroHeader />
       <div className="page-content-wrapper">
         <div className="page-content">
           {introCard.map((card) => (
-            <div className="intro-slide">
-              <h3>{card.head}</h3>
-              <p>{card.content}</p>
-            </div>
+            <IntroCard card={card} />
           ))}
         </div>
-        <div className="dev-wrapper">
-          <a
-            href="https://github.com/rogi-rogi/KNU_Graduation_Guidance"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>
-        </div>
+        <DevSlide />
       </div>
     </div>
   );

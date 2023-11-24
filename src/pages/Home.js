@@ -1,10 +1,11 @@
 import "./Page.scss";
 import { useState } from "react";
-import MenuBar from "../components/menu/MenuBar";
-import Intro from "./Intro";
-import CalcGraduation from "./CalcGraduation";
-import Board from "./Board";
-import TestPage from "./TestPage";
+
+import MenuBar from "../components/menu_bar/MenuBar.js";
+import Intro from "./Intro.js";
+import CalcGraduation from "./CalcGraduation.js";
+import Board from "./Board.js";
+import TestPage from "./TestPage.js";
 
 const Home = () => {
   const titles = ["소개", "학점계산", "게시판", "Test"];

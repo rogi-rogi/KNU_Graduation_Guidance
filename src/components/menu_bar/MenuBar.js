@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./MenuBar.scss";
-import MenuBtn from "./MenuBtn";
+import MenuBtn from "./MenuBtn.js";
 
 const MenuBar = ({ titles, pageNum, handleChangePage }) => {
   const [selectEffect, setSelectEffect] = useState({});
