@@ -26,6 +26,7 @@ const CalcBox = () => {
 
   useEffect(() => {
     console.log(`select ID : ${selectMajor}`);
+    console.log(creditDispatch(selectMajor, { type: "GET_CREDIT" }));
   }); // for test
 
   return (
