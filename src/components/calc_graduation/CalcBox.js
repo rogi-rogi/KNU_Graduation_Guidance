@@ -5,44 +5,50 @@ import CreditContext from "../../contexts/CreditContext";
 const CalcBox = () => {
   const { groupState } = useContext(GroupContext);
   const { creditState, creditDispatch } = useContext(CreditContext);
-  console.log(creditDispatch("y1_g3_m1", { type: "GET_CREDIT" }));
-  // const [yearID, setYearID] = useState("y0");
-  // const [selectGroupID, setSelectGroupID] = useState("0000000000");
-  // const handleOnChangeSetStartYearIdx = (e) => {
-  //   if (e.target.value !== null) {
-  //     setYearID(e.target.value);
-  //     setSelectGroupID("0000000000");
-  //   }
-  // };
-  // const handleOnChangeSetGroupID = (e) => {
-  //   if (e.target.value !== null) setSelectGroupID(e.target.value);
-  // };
+  const TEST = creditDispatch("y1_g3_m1", { type: "GET_CREDIT" });
+  console.log(TEST);
+  const TEMP = groupState["major"].list["y1_g1"];
+  console.log(TEMP);
+  const [selectYear, setSelectYear] = useState("*");
+  const [selectGroup, setSelectGroup] = useState("*");
+  const [selectMajor, setSelectMajor] = useState("*");
+  const handleOnChangeSelectYear = (e) => {
+    if (e.target.value !== undefined) setSelectYear(e.target.value);
+  };
+  const handleOnChangeSelectGroup = (e) => {
+    if (e.target.value !== undefined) setSelectGroup(e.target.value);
+  };
+  const handleOnChangeSelectMajor = (e) => {
+    if (e.target.value !== undefined) setSelectMajor(e.target.value);
+  };
   // 입학연도별 대학분류
   const headerList = ["구분", "기초", "일반", "균형", "계열", "합계"];
 
   useEffect(() => {
-    // console.log("startYearIdx:" + startYearIdx);
-    // const msg = groupList.list[startYearIdx];
-    // console.log(msg);
-    // console.log();
+    console.log(`select ID : ${selectMajor}`);
   }); // for test
 
   return (
     <>
       <div className="calc-box-wrapper">
-        {/* <div className="list-box-wrapper">
+        <div className="list-box-wrapper">
           <GroupListBox
-            header={startYearList.header}
-            list={startYearList.list}
-            onChange={handleOnChangeSetStartYearIdx}
+            header={groupState["year"].header}
+            list={groupState["year"].list["*"]}
+            onChange={handleOnChangeSelectYear}
           />
           <GroupListBox
-            header={groupList.header}
-            list={groupList.list[startYearIdx]}
-            onChange={handleOnChangeSetGroupID}
+            header={groupState["group"].header}
+            list={groupState["group"].list[selectYear]}
+            onChange={handleOnChangeSelectGroup}
+          />
+          <GroupListBox
+            header={groupState["major"].header}
+            list={groupState["major"].list[selectGroup]}
+            onChange={handleOnChangeSelectMajor}
           />
         </div>
-        <div className="calc-box-container-subject">
+        {/* <div className="calc-box-container-subject">
           <ViewHeader headerList={headerList} />
           <ViewCredit {...targetCreditInfo} />
         </div> */}
