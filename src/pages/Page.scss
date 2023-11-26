@@ -80,18 +80,24 @@
 }
 
 .calc-box-wrapper {
-  width: 100%;
   padding-top: 300px;
   height: 300px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  .list-box-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 110px;
+    width: max-content;
+    gap: 10px;
+  }
   .calc-box-container-subject {
+    background-color: rgb(110, 100, 100);
     display: inline-grid;
+    width: max-content;
     grid-template-columns: minmax(80px, 1.5fr) repeat(5, minmax(60px, 1fr));
     grid-template-rows: 30px repeat(10, minmax(30px, 1fr));
-
     .header {
       background-color: gray;
       text-align: center;
@@ -100,16 +106,10 @@
   }
 }
 
-.list-box-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100px;
-  width: 100%;
-  gap: 10px;
-}
-
 .list-box {
   width: 300px;
+  height: 30px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -121,11 +121,11 @@
     line-height: 30px;
   }
   select {
-    width: 130px;
-    height: 28px;
+    width: 160px;
+    height: 30px;
+    box-sizing: border-box;
     border: 1px solid rgba(198, 225, 255, 0.7);
     border-radius: 10px;
-    box-sizing: border-box;
     padding-left: 3px;
     &:focus {
       border-color: rgb(14, 90, 255);

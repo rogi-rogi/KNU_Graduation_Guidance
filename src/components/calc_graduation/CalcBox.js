@@ -5,24 +5,19 @@ import CreditContext from "../../contexts/CreditContext";
 const CalcBox = () => {
   const { groupState } = useContext(GroupContext);
   const { creditState, creditDispatch } = useContext(CreditContext);
-  const TEST = creditDispatch("y1_g3_m1", { type: "GET_CREDIT" });
-  console.log(TEST);
-  const TEMP = groupState["major"].list["y1_g1"];
-  console.log(TEMP);
+
   const [selectYear, setSelectYear] = useState("*");
   const [selectGroup, setSelectGroup] = useState("*");
   const [selectMajor, setSelectMajor] = useState("*");
   const handleOnChangeSelectYear = (e) => {
-    if (e.target.value !== undefined) setSelectYear(e.target.value);
+    if (e.target.value) setSelectYear(e.target.value);
   };
   const handleOnChangeSelectGroup = (e) => {
-    if (e.target.value !== undefined) setSelectGroup(e.target.value);
+    if (e.target.value) setSelectGroup(e.target.value);
   };
   const handleOnChangeSelectMajor = (e) => {
-    if (e.target.value !== undefined) setSelectMajor(e.target.value);
+    if (e.target.value) setSelectMajor(e.target.value);
   };
-  // 입학연도별 대학분류
-  const headerList = ["구분", "기초", "일반", "균형", "계열", "합계"];
 
   useEffect(() => {
     console.log(`select ID : ${selectMajor}`);
@@ -34,25 +29,25 @@ const CalcBox = () => {
       <div className="calc-box-wrapper">
         <div className="list-box-wrapper">
           <GroupListBox
-            header={groupState["year"].header}
-            list={groupState["year"].list["*"]}
+            header={groupState.initGroup["year"].header}
+            list={groupState.initGroup["year"].list["*"]}
             onChange={handleOnChangeSelectYear}
           />
           <GroupListBox
-            header={groupState["group"].header}
-            list={groupState["group"].list[selectYear]}
+            header={groupState.initGroup["group"].header}
+            list={groupState.initGroup["group"].list[selectYear]}
             onChange={handleOnChangeSelectGroup}
           />
           <GroupListBox
-            header={groupState["major"].header}
-            list={groupState["major"].list[selectGroup]}
+            header={groupState.initGroup["major"].header}
+            list={groupState.initGroup["major"].list[selectGroup]}
             onChange={handleOnChangeSelectMajor}
           />
         </div>
-        {/* <div className="calc-box-container-subject">
-          <ViewHeader headerList={headerList} />
-          <ViewCredit {...targetCreditInfo} />
-        </div> */}
+        <div className="calc-box-container-subject">
+          <ViewHeader headerList={groupState.ViewHeaderList} />
+          {/* <ViewCredit {...targetCreditInfo} /> */}
+        </div>
       </div>
     </>
   );
@@ -84,11 +79,9 @@ const ViewCredit = ({ header, creditList, selectGroupID }) => {
   return (
     <>
       <div className="header">{header}</div>
-      {creditList
-        .filter((group) => group.id === selectGroupID)[0]
-        .subject.map((credit) => (
-          <div>{credit}</div>
-        ))}
+      {creditList.subject.map((credit) => (
+        <div>{credit}</div>
+      ))}
     </>
   );
 };

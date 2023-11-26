@@ -1,7 +1,7 @@
 import { createContext } from "react";
 const groupList = {
   year: {
-    header: "Step 01 : 입학연도",
+    header: "1. 입학연도",
     list: {
       "*": [
         { id: "y1", title: "~2012" },
@@ -12,7 +12,7 @@ const groupList = {
     },
   },
   group: {
-    header: "Step 02 : 학부",
+    header: "2. 학부",
     list: {
       // ~2012
       y1: [
@@ -37,7 +37,7 @@ const groupList = {
     },
   },
   major: {
-    header: "Step 03 : 학과(전공)",
+    header: "3. 학과(전공)",
     list: {
       // ~2012 복지융합대학
       y1_g1: [
@@ -76,10 +76,12 @@ const groupList = {
     },
   },
 };
+const ViewHeaderList = ["구분", "기초", "일반", "균형", "계열", "합계"];
+
 const initGroup = groupList;
 
 const GroupContext = createContext({
-  groupState: initGroup,
+  groupState: { initGroup, ViewHeaderList },
 });
 
 export default GroupContext;
