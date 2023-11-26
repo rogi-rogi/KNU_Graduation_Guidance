@@ -1,7 +1,16 @@
 import { createContext } from "react";
 
 const initState = [
-  ["NOT_FIND", [0, 0, 0, 0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], 0],
+  [
+    "INIT",
+    ["", "", "", "", ""],
+    ["", ""],
+    ["", ""],
+    ["", ""],
+    ["", ""],
+    ["", ""],
+    "",
+  ],
   [
     "y1_g1_m1",
     [0, 13, 0, 0, 13],
@@ -58,7 +67,7 @@ const initState = [
   return { id, subject, major, advanced, doubleIn, doubleOut, minor, sum };
 });
 
-const NULL_FORM = initState.filter((credit) => credit.id === "NOT_FOUND_ID")[0];
+const INIT = initState.filter((credit) => credit.id === "INIT")[0];
 const CreditContext = createContext({
   creditState: initState,
   creditDispatch: (targetID, action) => {
@@ -67,9 +76,11 @@ const CreditContext = createContext({
         const findInfo = initState.filter(
           (credit) => credit.id === targetID
         )[0];
-        return findInfo ? findInfo : NULL_FORM;
+        return findInfo ? findInfo : INIT;
+      case "INIT":
+        return INIT;
       default:
-        return NULL_FORM;
+        return INIT;
     }
   },
 });
