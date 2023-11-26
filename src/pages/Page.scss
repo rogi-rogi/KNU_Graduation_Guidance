@@ -87,7 +87,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  .calc-box-container-std1 {
+  .calc-box-container-subject {
     display: inline-grid;
     grid-template-columns: minmax(80px, 1.5fr) repeat(5, minmax(60px, 1fr));
     grid-template-rows: 30px repeat(10, minmax(30px, 1fr));

@@ -2,7 +2,7 @@ import CalcBox from "../components/calc_graduation/CalcBox";
 // import CalcGraph from "../components/calc_graduation/CalcGraph";
 import "./Page.scss";
 
-const CalcGraduation = () => {
+const CalcCredit = () => {
   return (
     <div className="page">
       <div className="page-content-wrapper">
@@ -15,4 +15,4 @@ const CalcGraduation = () => {
   );
 };
 
-export default CalcGraduation;
+export default CalcCredit;
