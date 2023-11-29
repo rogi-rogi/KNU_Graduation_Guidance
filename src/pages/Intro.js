@@ -25,13 +25,13 @@ const Intro = () => {
     <div className="page">
       <IntroHeader />
       <div className="page-content-wrapper">
-        <div className="page-content">
+        <div className="intro-slide-wrapper">
           {introCard.map((card) => (
             <IntroCard card={card} />
           ))}
         </div>
-        <DevSlide />
       </div>
+      <DevSlide />
     </div>
   );
 };

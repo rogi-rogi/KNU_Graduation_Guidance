@@ -1,21 +1,26 @@
+$MAIN_COLOR: #5a91f7;
+$WRAPPER_COLOR: rgba(198, 225, 255, 0.7);
+$WRAPPER_SHADOW_COLOR: rgba(86, 71, 255, 0.9);
+$BOX_SHADOW: 5px 7px 15px 3px $WRAPPER_SHADOW_COLOR;
+$SUB_BOX_SHADOW: 0px 1px 2px 0px $WRAPPER_SHADOW_COLOR;
 .page,
 .home-wrapper {
   width: 100%;
 
   min-width: 800px;
-  background-color: rgba(198, 225, 255, 0.7);
   .page-content-header {
     height: 800px;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-
+    border-bottom: 20px solid $WRAPPER_COLOR;
     .header-title {
       padding-top: 300px;
       height: 300px;
       width: 500px;
       margin-left: 100px;
       text-align: left;
+
       h1:first-child {
         transition: 1s ease-out;
         font-size: 40px;
@@ -27,147 +32,225 @@
     }
   }
   .page-content-wrapper {
-    // for page-content width 80%
+    width: 100%;
+    gap: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .page-content {
-    // display: flex;
-    // justify-content: space-around;
-    gap: 10px;
-    width: 80%;
-  }
 }
-
-.intro-slide {
+.intro-slide-wrapper {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: left;
-  width: 100%;
-  height: 400px;
-  max-width: 420px;
-  margin: 15px 0px;
-  padding: 0px 15px;
-  border: 8px solid #5a91f7;
-  border-radius: 10px;
-  box-sizing: border-box;
-  transition: 0.4s ease-out;
-  h3 {
-    width: fit-content;
-    font-size: 30px;
-    line-height: 50px;
-    width: 290px;
-  }
-  &:hover {
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 600px;
+  gap: 10px;
+  perspective: 1000px;
+  .intro-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: left;
+    width: 360px;
+    height: 400px;
+    margin: 15px 0px;
+    padding: 0px 15px;
+    border: 8px solid $MAIN_COLOR;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: $WRAPPER_COLOR;
+    transition: 0.4s ease-out;
     h3 {
-      transition: color 0.5s ease-out;
-      color: #5a91f7;
-      border: 2px solid rgba(0, 0, 0, 0.5);
+      width: min-content;
+      font-size: 30px;
+      line-height: 50px;
+      width: 290px;
+      border-radius: 10px;
+      transition: background-color 0.5s ease-out;
     }
-    transform: translate(-13px, -10px);
-  }
-  p {
-    font-weight: bold;
+    &:hover {
+      h3 {
+        background-color: $MAIN_COLOR;
+        color: bisque;
+      }
+      transform: rotate3d(0.7, -2, 0.4, 10deg);
+      box-shadow: $BOX_SHADOW;
+    }
+    p {
+      font-weight: bold;
+    }
   }
 }
-
 .dev-wrapper {
   width: 100%;
   height: 150px;
-  background-color: #5a91f7;
+  background-color: $MAIN_COLOR;
 }
 
 .calc-box-wrapper {
+  white-space: nowrap;
   padding-top: 300px;
-  height: 300px;
+  height: min-content;
+  // max-width: 600px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   gap: 10px;
-  .list-box-wrapper {
+
+  .option-box-wrapper {
     display: flex;
     flex-direction: column;
-    height: min-content;
-    width: max-content;
-    align-items: end;
-    gap: 10px;
-    .subject-btn {
-      width: 100px;
-      font-weight: bold;
-      line-height: 30px;
-      background-color: #5a91f7;
-      border-radius: 10px;
-      color: black;
-      &:active {
-        color: white;
-      }
-    }
-  }
-
-  .subject-calc-box-wrapper {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 400px;
-    height: 170px;
-    background-color: #5a91f7;
+    justify-content: space-around;
+    max-height: 350x;
+    min-height: min-content;
+    padding: 10px 10px;
+    gap: 10px;
+    background-color: $WRAPPER_COLOR;
+
+    border: 3px solid $MAIN_COLOR;
     border-radius: 10px;
-    .subject-calc-box {
-      background-color: rgba(198, 225, 255, 0.7);
-      display: inline-grid;
-      width: min-content;
-      height: min-content;
-      grid-template-columns: 80px repeat(5, 60px);
-      grid-template-rows: 30px repeat(4, 30px);
-      text-align: center;
-      .head {
-        background-color: #5a91f7;
-        line-height: 30px;
-      }
-      .sum {
-        background-color: bisque;
-      }
-      input {
-        width: 60px;
-        text-align: center;
-        box-sizing: border-box;
-        background-color: white;
-        border: 1px solid #5a91f7;
-        border-radius: 5px;
-        &:focus {
-          outline: 1px solid rgba(198, 225, 255, 0.7);
+    box-shadow: $SUB_BOX_SHADOW;
+    box-sizing: border-box;
+    .list-box-wrapper {
+      // width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      gap: 10px;
+      .list-box {
+        width: 300px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 10px;
+        background-color: $WRAPPER_COLOR;
+        box-sizing: content-box;
+        box-shadow: $SUB_BOX_SHADOW;
+        border-radius: 5em;
+        label {
+          line-height: 30px;
+        }
+        select {
+          width: 130px;
+          height: 25px;
+          box-sizing: border-box;
+          border: 1px solid $WRAPPER_COLOR;
+          border-radius: 10px;
+          padding-left: 3px;
+          &:focus {
+            border-color: rgb(14, 90, 255);
+            outline: 1px solid $WRAPPER_COLOR;
+            background-color: $WRAPPER_COLOR;
+          }
         }
       }
     }
-  }
-}
 
-.list-box {
-  width: 300px;
-  height: 30px;
+    .add-major-box-wrapeer {
+      // display: flex;
+      // flex-direction: column;
+      height: 100%;
+      max-width: 320px;
+      // background-color: $WRAPPER_COLOR;
+      .add-major-option {
+        min-width: 320px;
+        white-space: nowrap;
+        display: flex;
+        justify-content: space-around;
+        // background-color: $WRAPPER_COLOR;
+      }
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 10px;
-  background-color: #5a91f7;
-  box-sizing: content-box;
-  border-radius: 5em;
-  label {
-    line-height: 30px;
+      .add-major-list-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .major-type-box {
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          padding-right: 27px;
+        }
+        .option-box-wrapper {
+          width: 100%;
+          height: 100%;
+          border: none;
+          background-color: inherit;
+          box-shadow: none;
+          padding: 0;
+        }
+      }
+    }
+
+    .apply-btn {
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      background-color: $WRAPPER_COLOR;
+      box-sizing: content-box;
+      box-shadow: $SUB_BOX_SHADOW;
+      border-color: $MAIN_COLOR;
+      border-radius: 5em;
+    }
   }
-  select {
-    width: 160px;
-    height: 30px;
-    box-sizing: border-box;
-    border: 1px solid rgba(198, 225, 255, 0.7);
+
+  .credit-list-box-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $MAIN_COLOR;
     border-radius: 10px;
-    padding-left: 3px;
-    &:focus {
-      border-color: rgb(14, 90, 255);
-      outline: 1px solid rgba(198, 225, 255, 0.7);
-      background-color: rgba(198, 225, 255, 0.7);
+    width: min-content;
+    height: 295px;
+    .credit-calc-box {
+      background-color: $WRAPPER_COLOR;
+      display: inline-grid;
+      width: min-content;
+      height: min-content;
+      grid-template-columns: 80px repeat(11, 50px);
+      grid-template-rows: 45px repeat(6, 35px);
+      text-align: center;
+    }
+
+    .credit-calc-box > :first-child,
+    .credit-calc-box > :nth-child(5),
+    .credit-calc-box > :nth-child(6) {
+      line-height: 75px;
+      grid-row: span 2;
+    }
+    .credit-calc-box > :nth-child(2) {
+      grid-column: span 5;
+      line-height: 45px;
+    }
+    .credit-calc-box > :nth-child(3),
+    .credit-calc-box > :nth-child(4) {
+      line-height: 45px;
+      grid-column: span 2;
+    }
+
+    .head {
+      border: 0.7px solid $WRAPPER_COLOR;
+      box-sizing: border-box;
+      background-color: $MAIN_COLOR;
+      line-height: 30px;
+    }
+    .sum {
+      background-color: rgb(14, 90, 255);
+      border-radius: 5px;
+    }
+    input {
+      width: 50px;
+      text-align: center;
+      box-sizing: border-box;
+      background-color: $WRAPPER_COLOR;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      &:focus {
+        background-color: white;
+      }
     }
   }
 }

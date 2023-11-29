@@ -6,10 +6,8 @@ const CalcCredit = () => {
   return (
     <div className="page">
       <div className="page-content-wrapper">
-        <div className="page-content">
-          <CalcBox />
-          {/* <CalcGraph /> */}
-        </div>
+        <CalcBox />
+        {/* <CalcGraph /> */}
       </div>
     </div>
   );
