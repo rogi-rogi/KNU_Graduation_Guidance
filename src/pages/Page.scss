@@ -213,11 +213,12 @@ $SUB_BOX_SHADOW: 0px 1px 2px 0px $WRAPPER_SHADOW_COLOR;
       grid-template-rows: 45px repeat(6, 35px);
       text-align: center;
     }
-
+    line-height: 35px;
+    // font-size:10px;
     .credit-calc-box > :first-child,
     .credit-calc-box > :nth-child(5),
     .credit-calc-box > :nth-child(6) {
-      line-height: 75px;
+      line-height: 80px;
       grid-row: span 2;
     }
     .credit-calc-box > :nth-child(2) {
@@ -234,10 +235,9 @@ $SUB_BOX_SHADOW: 0px 1px 2px 0px $WRAPPER_SHADOW_COLOR;
       border: 0.7px solid $WRAPPER_COLOR;
       box-sizing: border-box;
       background-color: $MAIN_COLOR;
-      line-height: 30px;
     }
     .sum {
-      background-color: rgb(14, 90, 255);
+      background-color: rgb(121, 153, 213);
       border-radius: 5px;
     }
     input {
@@ -248,6 +248,8 @@ $SUB_BOX_SHADOW: 0px 1px 2px 0px $WRAPPER_SHADOW_COLOR;
       border: none;
       border-radius: 5px;
       outline: none;
+      font-family: "Orbit";
+      font-size: 16px;
       &:focus {
         background-color: white;
       }

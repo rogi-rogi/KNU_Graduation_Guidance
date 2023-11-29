@@ -45,13 +45,13 @@ const CalcBox = () => {
     }
   };
 
-  // 2. 학부 : 드롭다운
+  // 2. 소속 : 드롭다운
   const handleOnChangeSelectGroup = (e) => {
     setSelectGroup(e.target.value);
     if (e.target.value === "*") setSelectMajor("*");
   };
 
-  // 3. 학과(전공) : 드롭다운
+  // 3. 학부(학과) : 드롭다운
   const handleOnChangeSelectMajor = (e) => {
     setSelectMajor(e.target.value);
   };
@@ -73,12 +73,12 @@ const CalcBox = () => {
     console.log(e.target.value);
   };
 
-  // 4. 학부 (추가전공) : 드롭다운
+  // 4. 소속(추가전공) : 드롭다운
   const handleOnChangeSelectAddGroup = (e) => {
     setSelectAddGroup(e.target.value);
     if (e.target.value === "*") setSelectAddMajor("*");
   };
-  // 5. 학과 (추가전공) : 드롭다운
+  // 5. 학부(추가전공) : 드롭다운
   const handleOnChangeSelectAddMajor = (e) => {
     setSelectAddMajor(e.target.value);
   };
