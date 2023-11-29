@@ -14,7 +14,7 @@
 | :-----------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/95115004?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/8115130?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/151488428?v=4" width="150px"/> |
 |                   [@rogi-rogi](https://github.com/rogi-rogi)                    |                     [@geoni-ara](https://github.com/geoni)                     |                  [@seungjuncha](https://github.com/seungjuncha)                  |
-|                  <p style="white-space:nowrap">기획, 개발</p>                   |                                     디자인                                     |                                      디자인                                      |
+|                  <p style="white-space:nowrap">기획, 개발</p>                   |                                     데이터수집                                     |                                      디자인                                      |
 
 <hr/><br>
 
@@ -120,34 +120,44 @@ yarn start
 📦KNU_Graduation_Guidance
  ┣ 📂node_modules
  ┣ 📂public
- ┃ ┣ index.html
- ┃ ┗ robots.txt
+ ┃ ┣ 📂assets
+ ┃ ┃ ┗ 📂images
+ ┃ ┃ ┃ ┗ 📜KNU_MAIN.jpg
+ ┃ ┣ 📜index.html
+ ┃ ┗ 📜robots.txt
  ┣ 📂src
  ┃ ┣ 📂components
- ┃ ┃ ┗ 📂menu
- ┃ ┃ ┃ ┣ MenuBar.js
- ┃ ┃ ┃ ┣ MenuBar.scss
- ┃ ┃ ┃ ┗ MenuBtn.js
- ┃ ┣ 📂context
- ┃ ┃ ┗ index.js
+ ┃ ┃ ┣ 📂calc_graduation
+ ┃ ┃ ┃ ┣ 📜CalcBox.js
+ ┃ ┃ ┃ ┣ 📜CalcGraph.js
+ ┃ ┃ ┃ ┣ 📜GroupListBox.js
+ ┃ ┃ ┃ ┣ 📜MajorCalcOptionBox.js
+ ┃ ┃ ┃ ┗ 📜ViewCredit.js
+ ┃ ┃ ┣ 📂intro
+ ┃ ┃ ┃ ┣ 📜DevSlide.js
+ ┃ ┃ ┃ ┣ 📜IntroCard.js
+ ┃ ┃ ┃ ┗ 📜IntroHeader.js
+ ┃ ┃ ┗ 📂menu_bar
+ ┃ ┃ ┃ ┣ 📜MenuBar.js
+ ┃ ┃ ┃ ┣ 📜MenuBar.scss
+ ┃ ┃ ┃ ┗ 📜MenuBtn.js
+ ┃ ┣ 📂contexts
+ ┃ ┃ ┣ 📜CreditContext.js
+ ┃ ┃ ┗ 📜GroupContext.js
  ┃ ┣ 📂pages
- ┃ ┃ ┣ CalcGraduation.js
- ┃ ┃ ┣ Development.js
- ┃ ┃ ┣ Home.js
- ┃ ┃ ┣ Home.scss
- ┃ ┃ ┣ Intro.js
- ┃ ┃ ┣ Page.scss
- ┃ ┃ ┗ TestPage.js
- ┃ ┣ 📂services
- ┃ ┣ App.css
- ┃ ┣ App.js
- ┃ ┣ App.test.js
- ┃ ┣ index.css
- ┃ ┣ index.js
- ┃ ┣ reportWebVitals.js
- ┃ ┗ setupTests.js
- ┣ .gitignore
- ┣ package.json
- ┣ README.md
- ┗ yarn.lock
+ ┃ ┃ ┣ 📜Board.js
+ ┃ ┃ ┣ 📜CalcCredit.js
+ ┃ ┃ ┣ 📜Home.js
+ ┃ ┃ ┣ 📜Intro.js
+ ┃ ┃ ┣ 📜LoadPage.js
+ ┃ ┃ ┣ 📜Page.scss
+ ┃ ┃ ┗ 📜TestPage.js
+ ┃ ┣ 📜App.css
+ ┃ ┣ 📜App.js
+ ┃ ┣ 📜index.css
+ ┃ ┗ 📜index.js
+ ┣ 📜.gitignore
+ ┣ 📜package.json
+ ┣ 📜README.md
+ ┗ 📜yarn.lock
 ```
