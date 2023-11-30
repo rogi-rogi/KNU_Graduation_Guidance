@@ -55,7 +55,7 @@ const groupList = {
         { id: "y3_g2", title: "사범대학" },
         { id: "y3_g3", title: "경영관리대학" },
         { id: "y3_g4", title: "글로벌인재대학" },
-        { id: "y3_g5", title: "공과대학" },
+        { id: "y3_g5", title: "ICT건설복지융합대학" },
       ],
       y4: [
         // 2021~
@@ -225,7 +225,7 @@ const groupList = {
         { id: "y3_g4_m4", title: "음악학과" },
       ],
       y3_g5: [
-        //2017~2020 공과대학
+        //2017~2020 ICT건설복지융합대학
         { id: "y3_g5_m1", title: "소프트웨어응용학부" },
         { id: "y3_g5_m2", title: "Iot전자공학과" },
         { id: "y3_g5_m3", title: "산업데이터사이언스학부" },
