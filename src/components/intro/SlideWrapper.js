@@ -1,6 +1,6 @@
 import CalcSlide from "./CalcSlide";
 import { useEffect, useRef, useState } from "react";
-const SlideWrapper = () => {
+const SlideWrapper = ({ onClick }) => {
   const [isVisible, setIsVisible] = useState(false);
   const wrapperRef = useRef(null);
   const handleScroll = () => {
@@ -17,7 +17,11 @@ const SlideWrapper = () => {
   return (
     <div className="slide-wrapper">
       <div className="header">저희가 만든 기능을 소개합니다.</div>
-      <CalcSlide isVisible={isVisible} wrapperRef={wrapperRef} />
+      <CalcSlide
+        isVisible={isVisible}
+        wrapperRef={wrapperRef}
+        onClick={() => onClick(1)}
+      />
     </div>
   );
 };

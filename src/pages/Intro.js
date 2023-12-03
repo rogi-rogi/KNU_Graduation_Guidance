@@ -5,7 +5,7 @@ import IntroCard from "../components/intro/IntroCard.js";
 import DevSlide from "../components/intro/DevSlide.js";
 import SlideWrapper from "../components/intro/SlideWrapper.js";
 
-const Intro = () => {
+const Intro = ({ onClick }) => {
   const introCard = [
     {
       head: "내가 알지 못하는 것. 필요해서 만듦.",
@@ -32,7 +32,7 @@ const Intro = () => {
           ))}
         </div>
       </div>
-      <SlideWrapper />
+      <SlideWrapper onClick={onClick} />
       <DevSlide />
     </div>
   );
