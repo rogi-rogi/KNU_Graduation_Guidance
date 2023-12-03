@@ -11,6 +11,7 @@ const CalcBox = () => {
   const [selectGroup, setSelectGroup] = useState("*");
   const [selectMajor, setSelectMajor] = useState("*");
   const [enableAddMajor, setEnableAddMajor] = useState(false);
+  const [enabledMinor, setEnabledMinor] = useState(false);
   const [selectAddGroup, setSelectAddGroup] = useState("*");
   const [selectAddMajor, setSelectAddMajor] = useState("*");
   const [majorType, setMajorType] = useState({
@@ -21,18 +22,29 @@ const CalcBox = () => {
   const [selectCredit, setSelectCredit] = useState(
     creditDispatch("*", { type: "INIT" })
   );
+  // 졸업기준
   const [userCredit, setUserCredit] = useState(
     creditDispatch(
       { selectCredit, other: "", majorType },
       { type: "CREDIT_CONVERT_USER" }
     )
   );
-  /* 계산과정에서 사용할 state
-  const [getCredit, setGetCredit] = useState();
-  const [needCredit, setNeedCredit] = useState();
-  const [certifiedCredit, setCertifiedCredit] = useState();
-  const [poorCredit, setPoorCredit] = useState();
-  */
+  // 취득
+  const [getCredit, setGetCredit] = useState(
+    creditDispatch("*", { type: "INIT_USER" })
+  );
+  // 인정학점
+  const [applyCredit, setApplyCredit] = useState(
+    creditDispatch("*", { type: "INIT_USER" })
+  );
+  // 미취득
+  const [needCredit, setNeedCredit] = useState(
+    creditDispatch("*", { type: "INIT_USER" })
+  );
+  // 추가입력
+  const [appendCredit, setAppendCredit] = useState(
+    creditDispatch("*", { type: "INIT_USER" })
+  );
 
   // 1. 입학연도 : 드롭다운
   const handleOnChangeSelectYear = (e) => {
@@ -66,11 +78,9 @@ const CalcBox = () => {
   const handleOnClickAddMajorView = (e) => {
     setEnableAddMajor(e.target.checked);
   };
-  // 부전공 / 복수전공 : 라디오버튼
-  const handleOnClickAddMajorType = (e) => {
-    // e.target.checked = false;
-    setMajorType((prev) => ({ ...prev, addMajor: e.target.value }));
-    console.log(e.target.value);
+  // 부전공 : 체크박스
+  const handleOnClickEnabledMinor = (e) => {
+    setEnabledMinor(!enabledMinor);
   };
 
   // 4. 소속(추가전공) : 드롭다운
@@ -87,7 +97,7 @@ const CalcBox = () => {
   const handleOnClickApplyBtn = () => {
     if (selectMajor === "*") return alert("'학과(전공)' 누락");
     if (enableAddMajor) {
-      if (majorType.addMajor === "*") return alert("부전공/복수전공 선택 누락");
+      if (selectAddGroup === "*") return alert("'소속(추가전공)' 누락");
       if (selectAddMajor === "*") return alert("'학과(추가전공)' 누락");
     }
 
@@ -96,10 +106,17 @@ const CalcBox = () => {
       // disable addMajor
       newMajorType = { ...majorType, addMajor: "*" };
     } else {
-      newMajorType = {
-        ...majorType,
-        addMajor: selectMajor === selectAddMajor ? "doubleIn" : "doubleOut",
-      };
+      if (enabledMinor) {
+        newMajorType = {
+          ...majorType,
+          addMajor: "minor",
+        };
+      } else {
+        newMajorType = {
+          ...majorType,
+          addMajor: selectMajor === selectAddMajor ? "doubleIn" : "doubleOut",
+        };
+      }
     }
     setMajorType(newMajorType);
 
@@ -107,7 +124,6 @@ const CalcBox = () => {
       type: "GET_CREDIT",
     });
     setSelectCredit(newSelectCredit);
-    console.log(newMajorType);
     // 수정된 정보로 형식 재요청
     setUserCredit(
       creditDispatch(
@@ -117,51 +133,51 @@ const CalcBox = () => {
     );
   };
 
-  // // 계산로직 구현 예정
-  // const handleOnChangeGetCredit = (e, idx) => {
-  //   const newGetCredit = [
-  //     ...getCredit.slice(0, idx),
-  //     e.target.value.replace(/[^0-9]/g, ""),
-  //     ...getCredit.slice(idx + 1, getCredit.length - 1),
-  //     0,
-  //   ].map(Number);
-  //   newGetCredit[4] = newGetCredit.reduce((prev, cur) => prev + cur);
+  // 계산로직 구현 예정
+  const handleOnChangeCredit = {
+    onChangeSubject: (e, idx) => {
+      let value = e.target.value.replace(/[^0-9]/g, " ");
+      if (value === " ") return;
+      value = Number(value);
+      const newGet = getCredit.subject.map(Number);
+      newGet[idx] = value;
+      newGet[4] = creditDispatch(newGet.slice(0, 4), {
+        type: "ARRAY_SUM",
+      });
 
-  //   // newCertifiedCredit
-  //   const subject = selectCredit.subject.map(Number);
-  //   const major = selectCredit[majorType].map(Number);
-  //   const newAccept = [
-  //     newGetCredit[0] > subject[0] ? subject[0] : newGetCredit[0],
-  //     newGetCredit[1] +
-  //       (newGetCredit[0] > subject[0] ? newGetCredit[0] - subject[0] : 0),
-  //     newGetCredit[2],
-  //     newGetCredit[3],
-  //     0, // subject sum
-  //     newGetCredit[5] > major[0] ? major[0] : newGetCredit[5],
-  //     newGetCredit[6] +
-  //       (newGetCredit[5] > major[1] ? newGetCredit[5] - major[1] : 0),
-  //     newGetCredit[7],
-  //     // 학부 내 부전/복전인 경우 기초학점 이전이 되는지
-  //     newGetCredit[8], // edit
-  //     0, // other sum
-  //   ];
-  //   newAccept[4] = creditDispatch(newAccept.slice(0, 3), { type: "SUM" });
-  //   newAccept[9] = creditDispatch(newAccept.slice(5, 9), { type: "SUM" });
+      const std = userCredit.subject.map(Number);
+      const newApply = [
+        newGet[0] > std[0] ? std[0] : newGet[0],
+        newGet[1] +
+          (newGet[0] > std[0] ? newGet[0] - std[0] : 0) +
+          (newGet[2] > std[2] ? newGet[2] - std[2] : 0) +
+          (newGet[3] > std[3] ? newGet[3] - std[3] : 0),
+        newGet[2] > std[2] ? std[2] : newGet[2],
+        newGet[3] > std[3] ? std[3] : newGet[3],
+        newGet[4],
+      ];
+      const newNeed = std.map((credit, i) => {
+        const newCredit = credit - newApply[i];
+        return newCredit > 0 ? newCredit : 0;
+      });
 
-  //   const newPoorCredit = [
-  //     subject[0] - newAccept[0],
-  //     subject[1] - newAccept[1] >= 0 ? subject[1] - newAccept[1] : 0,
-  //     subject[2] - newAccept[2] >= 0 ? subject[2] - newAccept[2] : 0,
-  //     subject[3] - newAccept[3] >= 0 ? subject[3] - newAccept[3] : 0,
-  //     0,
-  //   ].map(Number);
-  //   newPoorCredit[newPoorCredit.length - 1] = newPoorCredit.reduce(
-  //     (prev, cur) => prev + cur
-  //   );
-  //   setGetCredit(newGetCredit);
-  //   setCertifiedCredit(newAccept);
-  //   setPoorCredit(newPoorCredit);
-  // };
+      // update
+      setGetCredit((prev) => ({
+        ...prev,
+        subject: newGet,
+      }));
+      setApplyCredit((prev) => ({
+        ...prev,
+        subject: newApply,
+      }));
+      setNeedCredit((prev) => ({
+        ...prev,
+        subject: newNeed,
+      }));
+    },
+    onChangeMajor: (e, idx) => {},
+    onChangeAddMajor: (e, idx) => {},
+  };
 
   // 최적화 작업 필요
   const handle = {
@@ -170,7 +186,7 @@ const CalcBox = () => {
     handleOnChangeSelectMajor,
     handleOnClickMajorType,
     handleOnClickAddMajorView,
-    handleOnClickAddMajorType,
+    handleOnClickEnabledMinor,
     handleOnChangeSelectAddGroup,
     handleOnChangeSelectAddMajor,
     handleOnClickApplyBtn,
@@ -187,6 +203,7 @@ const CalcBox = () => {
   useEffect(() => {
     // console.log("------------------");
     console.log(userCredit);
+    console.log(getCredit);
     // console.log(majorType);
     // console.log("------------------");
   });
@@ -199,14 +216,16 @@ const CalcBox = () => {
             <ViewHeader headerList={groupState.headerView.header} />
             <ViewHeader headerList={groupState.headerView.subHeader} />
             <ViewCredit header={"졸업기준"} credit={userCredit} />
-            <ViewCredit header={"취득"} credit={userCredit} type={"WRITE"} />
-            <ViewCredit header={"인정"} credit={userCredit} />
             <ViewCredit
-              header={"추가입력"}
-              credit={userCredit}
+              header={"취득"}
+              credit={getCredit}
+              onChange={handleOnChangeCredit}
+              majorType={majorType}
               type={"WRITE"}
             />
-            <ViewCredit header={"미취득"} credit={userCredit} />
+            <ViewCredit header={"인정"} credit={applyCredit} />
+            <ViewCredit header={"미취득"} credit={needCredit} />
+            <ViewCredit header={"개발예정"} credit={appendCredit} />
           </div>
         </div>
       </div>
@@ -216,6 +235,7 @@ const CalcBox = () => {
 
 const ViewHeader = ({ headerList }) => {
   return (
+    //context에서 id할당 필요
     <>
       {headerList.map((title) => (
         <div className="head">{title}</div>

@@ -49,22 +49,11 @@ const MajorCalcOptionBox = ({ info, handle }) => {
         <div className="add-major-list-wrapper">
           <div className="major-type-box">
             <span>
-              <label value="minor">부전공</label>
+              <label for="minor">부전공</label>
               <input
-                name="add_major"
-                type="radio"
+                type="checkbox"
                 value="minor"
-                onChange={handle.handleOnClickAddMajorType}
-                disabled={!info.enableAddMajor}
-              />
-            </span>
-            <span>
-              <label value="*">복수전공</label>
-              <input
-                name="add_major"
-                type="radio"
-                value="double"
-                onClick={handle.handleOnClickAddMajorType}
+                onClick={handle.handleOnClickEnabledMinor}
                 disabled={!info.enableAddMajor}
               />
             </span>

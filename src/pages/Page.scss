@@ -3,6 +3,7 @@ $WRAPPER_COLOR: rgba(198, 225, 255, 0.7);
 $WRAPPER_SHADOW_COLOR: rgba(86, 71, 255, 0.9);
 $BOX_SHADOW: 5px 7px 15px 3px $WRAPPER_SHADOW_COLOR;
 $SUB_BOX_SHADOW: 0px 1px 2px 0px $WRAPPER_SHADOW_COLOR;
+$DISABLED_COLOR: rgb(121, 153, 213);
 .page,
 .home-wrapper {
   width: 100%;
@@ -237,7 +238,6 @@ $SUB_BOX_SHADOW: 0px 1px 2px 0px $WRAPPER_SHADOW_COLOR;
       background-color: $MAIN_COLOR;
     }
     .sum {
-      background-color: rgb(121, 153, 213);
       border-radius: 5px;
     }
     input {
@@ -252,6 +252,9 @@ $SUB_BOX_SHADOW: 0px 1px 2px 0px $WRAPPER_SHADOW_COLOR;
       font-size: 16px;
       &:focus {
         background-color: white;
+      }
+      &:disabled {
+        background-color: $DISABLED_COLOR;
       }
     }
   }

@@ -856,16 +856,8 @@ const initState = [
     credit;
   return { id, subject, major, advanced, doubleIn, doubleOut, minor, sum };
 });
-const INIT_ARR = ["", "", "", "", "", "", "", "", "", "", ""];
 const INIT = initState.filter((credit) => credit.id === "*")[0];
-const sum = (arr) => arr.reduce((prev, cur) => prev + cur);
-// const convertSelectCreditToArray = (majorType, target) => [
-//   ...target.subject,
-//   ...target[majorType.major],
-//   ...(majorType.addMajor !== "*" ? target[majorType.addMajor] : ["", ""]),
-//   target.other,
-//   target.sum,
-// ];
+const sum = (arr) => arr.map(Number).reduce((prev, cur) => prev + cur);
 const convertCreditToObject = ({ selectCredit, other, majorType }) => ({
   subject: selectCredit.subject,
   major: selectCredit[majorType.major],
@@ -882,15 +874,17 @@ const CreditContext = createContext({
       case "GET_CREDIT":
         const findInfo = initState.filter((credit) => credit.id === state)[0];
         return findInfo ? findInfo : INIT;
-      // case "GET_CREDIT_ARRAY":
-      //   return convertSelectCreditToArray(state.majorType, state.target);
       case "CREDIT_CONVERT_USER":
         return convertCreditToObject(state);
       case "INIT":
         return INIT;
-      case "INIT_ARR":
-        return INIT_ARR;
-      case "SUM":
+      case "INIT_USER":
+        return convertCreditToObject({
+          selectCredit: INIT,
+          other: "",
+          majorType: { major: "advanced", addMajor: "*" },
+        });
+      case "ARRAY_SUM":
         return sum(state);
       default:
         return INIT;

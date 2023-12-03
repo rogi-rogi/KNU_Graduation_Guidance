@@ -1,4 +1,4 @@
-import CalcBox from "../components/calc_graduation/CalcBox";
+import CalcBox from "../components/calc_credit/CalcBox";
 // import CalcGraph from "../components/calc_graduation/CalcGraph";
 import "./Page.scss";
 
