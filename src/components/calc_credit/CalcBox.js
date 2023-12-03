@@ -25,7 +25,7 @@ const CalcBox = () => {
   // 졸업기준
   const [userCredit, setUserCredit] = useState(
     creditDispatch(
-      { selectCredit, other: "", majorType },
+      { selectCredit, other: 0, majorType },
       { type: "CREDIT_CONVERT_USER" }
     )
   );
@@ -136,16 +136,17 @@ const CalcBox = () => {
   // 계산로직 구현 예정
   const handleOnChangeCredit = {
     onChangeSubject: (e, idx) => {
-      let value = e.target.value.replace(/[^0-9]/g, " ");
+      let value = handleOnChangeCredit.input(e);
       if (value === " ") return;
       value = Number(value);
-      const newGet = getCredit.subject.map(Number);
+      // get
+      const newGet = getCredit.subject;
       newGet[idx] = value;
       newGet[4] = creditDispatch(newGet.slice(0, 4), {
         type: "ARRAY_SUM",
       });
-
-      const std = userCredit.subject.map(Number);
+      // apply
+      const std = userCredit.subject;
       const newApply = [
         newGet[0] > std[0] ? std[0] : newGet[0],
         newGet[1] +
@@ -156,27 +157,126 @@ const CalcBox = () => {
         newGet[3] > std[3] ? std[3] : newGet[3],
         newGet[4],
       ];
+      // need
       const newNeed = std.map((credit, i) => {
         const newCredit = credit - newApply[i];
         return newCredit > 0 ? newCredit : 0;
       });
 
       // update
-      setGetCredit((prev) => ({
-        ...prev,
-        subject: newGet,
-      }));
+      const newGetCredit = { ...getCredit, subject: newGet };
+      newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
+      setGetCredit(newGetCredit);
+
       setApplyCredit((prev) => ({
         ...prev,
         subject: newApply,
+        sum: newGetCredit.sum,
       }));
       setNeedCredit((prev) => ({
         ...prev,
         subject: newNeed,
+        sum: newGetCredit.sum,
       }));
     },
-    onChangeMajor: (e, idx) => {},
-    onChangeAddMajor: (e, idx) => {},
+
+    onChangeMajor: (e, idx) => {
+      let value = handleOnChangeCredit.input(e);
+      if (value === " ") return;
+      value = Number(value);
+      // get
+      const newGet = getCredit.major;
+      newGet[idx] = value;
+      // apply
+      const std = userCredit.major;
+      const newApply = [
+        newGet[0] < std[0] ? newGet[0] : std[0],
+        newGet[1] + (newGet[0] < std[0] ? 0 : newGet[0] - std[0]),
+      ];
+      // need
+      const newNeed = std.map((credit, i) => {
+        const newCredit = credit - newApply[i];
+        return newCredit > 0 ? newCredit : 0;
+      });
+      // update
+      const newGetCredit = { ...getCredit, major: newGet };
+      newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
+      setGetCredit(newGetCredit);
+
+      setApplyCredit((prev) => ({
+        ...prev,
+        major: newApply,
+        sum: newGetCredit.sum,
+      }));
+      setNeedCredit((prev) => ({
+        ...prev,
+        major: newNeed,
+        sum: newGetCredit.sum,
+      }));
+    },
+    onChangeAddMajor: (e, idx) => {
+      let value = handleOnChangeCredit.input(e);
+      if (value === " ") return;
+      value = Number(value);
+      // get
+      const newGet = getCredit.addMajor;
+      newGet[idx] = value;
+      // apply
+      const std = userCredit.addMajor;
+      const newApply = [
+        newGet[0] < std[0] ? newGet[0] : std[0],
+        newGet[1] + (newGet[0] < std[0] ? 0 : newGet[0] - std[0]),
+      ];
+      // need
+      const newNeed = std.map((credit, i) => {
+        const newCredit = credit - newApply[i];
+        return newCredit > 0 ? newCredit : 0;
+      });
+      // update
+      const newGetCredit = { ...getCredit, addMajor: newGet };
+      newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
+      setGetCredit(newGetCredit);
+
+      setApplyCredit((prev) => ({
+        ...prev,
+        addMajor: newApply,
+        sum: newGetCredit.sum,
+      }));
+      setNeedCredit((prev) => ({
+        ...prev,
+        addMajor: newNeed,
+        sum: newGetCredit.sum,
+      }));
+    },
+    onChangeOther: (e, idx) => {
+      let value = handleOnChangeCredit.input(e);
+      if (value === " ") return;
+      value = Number(value);
+      // get
+      const newGet = getCredit.other;
+      newGet[idx] = value;
+      // apply
+      const std = userCredit.other;
+      const newApply = [newGet[0] < std ? newGet[0] : newGet[0] - std];
+      // need
+      const newNeed = [newApply[0] < std ? newApply[0] - std : 0];
+      // update
+      const newGetCredit = { ...getCredit, other: newGet };
+      newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
+      setGetCredit(newGetCredit);
+
+      setApplyCredit((prev) => ({
+        ...prev,
+        other: newApply,
+        sum: newGetCredit.sum,
+      }));
+      setNeedCredit((prev) => ({
+        ...prev,
+        other: newNeed,
+        sum: newGetCredit.sum,
+      }));
+    },
+    input: (e) => e.target.value.replace(/[^0-9]/g, " "),
   };
 
   // 최적화 작업 필요
@@ -202,8 +302,6 @@ const CalcBox = () => {
   };
   useEffect(() => {
     // console.log("------------------");
-    console.log(userCredit);
-    console.log(getCredit);
     // console.log(majorType);
     // console.log("------------------");
   });
@@ -225,7 +323,7 @@ const CalcBox = () => {
             />
             <ViewCredit header={"인정"} credit={applyCredit} />
             <ViewCredit header={"미취득"} credit={needCredit} />
-            <ViewCredit header={"개발예정"} credit={appendCredit} />
+            {/* <ViewCredit header={"개발예정"} credit={appendCredit} /> */}
           </div>
         </div>
       </div>

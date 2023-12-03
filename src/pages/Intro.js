@@ -3,6 +3,7 @@ import "./Page.scss";
 import IntroHeader from "../components/intro/IntroHeader.js";
 import IntroCard from "../components/intro/IntroCard.js";
 import DevSlide from "../components/intro/DevSlide.js";
+import SlideWrapper from "../components/intro/SlideWrapper.js";
 
 const Intro = () => {
   const introCard = [
@@ -31,6 +32,7 @@ const Intro = () => {
           ))}
         </div>
       </div>
+      <SlideWrapper />
       <DevSlide />
     </div>
   );

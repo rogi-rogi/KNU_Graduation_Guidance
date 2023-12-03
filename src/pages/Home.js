@@ -12,7 +12,7 @@ const Home = () => {
   const pages = [<Intro />, <CalcCredit />, <Board />, <TestPage />];
   const pageList = titles.map((title, idx) => ({ title, page: pages[idx] }));
 
-  const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useState(0);
 
   const handleChangePage = (id) => {
     setPageNum(id);

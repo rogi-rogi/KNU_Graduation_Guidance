@@ -31,19 +31,26 @@ const ViewCredit = ({
         type={type}
       />
 
-      <SubView list={credit.major} onChange={onChange} type={type} />
+      <SubView
+        list={credit.major}
+        onChange={onChange && onChange.onChangeMajor}
+        type={type}
+      />
 
       <SubView
         list={credit.addMajor}
-        onChange={onChange}
+        onChange={onChange && onChange.onChangeAddMajor}
         disabled={majorType.addMajor === "*"}
         type={type}
       />
 
-      <SubView list={[credit.other]} onChange={onChange} type={type} />
+      <SubView
+        list={[credit.other]}
+        onChange={onChange && onChange.onChangeOther}
+        type={type}
+      />
       <SubView
         list={[credit.sum]}
-        onChange={onChange}
         addStyle={divStyle}
         disabled={true}
         type={type}
