@@ -1,7 +1,10 @@
 const CalcSlide = ({ isVisible, wrapperRef, onClick }) => {
   return (
     <div className="calc-slide-wrapper" ref={wrapperRef}>
-      <div className={`title ${isVisible ? "visible" : ""}`} onClick={onClick}>
+      <div
+        className={`title ${isVisible[0] ? "visible" : ""}`}
+        onClick={onClick}
+      >
         <h1>🔢 학점 계산기</h1>
         <div className="content">
           더 이상 엑셀로 학점계산은 그만! 이제는 모든 학번, 학부생 누구나 사용할
@@ -9,7 +12,7 @@ const CalcSlide = ({ isVisible, wrapperRef, onClick }) => {
         </div>
       </div>
       <div
-        className={`image ${isVisible ? "visible" : ""}`}
+        className={`image ${isVisible[0] ? "visible" : ""}`}
         style={{
           backgroundImage: `url("/assets/images/calc-example1.png")`,
         }}

@@ -49,7 +49,7 @@ const MenuBar = ({ titles, pageNum, handleChangePage }) => {
 
   useEffect(() => {
     handleRePosition();
-  }, [windowWidth]);
+  }, [windowWidth, pageNum]);
   return (
     <div
       className="main-menubar-wrapper"

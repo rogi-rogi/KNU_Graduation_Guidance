@@ -1,12 +1,15 @@
 import CalcSlide from "./CalcSlide";
 import { useEffect, useRef, useState } from "react";
 const SlideWrapper = ({ onClick }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState([false, false]);
   const wrapperRef = useRef(null);
   const handleScroll = () => {
     const scrollPosition = window.scrollY + window.innerHeight;
     const elementPosition = wrapperRef.current.offsetTop;
-    setIsVisible(scrollPosition > elementPosition + 200);
+    setIsVisible([
+      scrollPosition > elementPosition + 200,
+      scrollPosition > elementPosition + 800,
+    ]);
   };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
