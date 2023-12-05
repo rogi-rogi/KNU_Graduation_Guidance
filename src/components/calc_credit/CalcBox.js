@@ -3,15 +3,22 @@ import GroupContext from "../../contexts/GroupContext";
 import CreditContext from "../../contexts/CreditContext";
 import MajorCalcOptionBox from "./MajorCalcOptionBox";
 import ViewCredit from "./ViewCredit";
+import NewGroupContext from "../../contexts/NewGroupContext";
+import NewMajorOptionBox from "./NewMajorOptionBox";
+import NewCreditContext from "../../contexts/NewCreditContext";
 
 const CalcBox = () => {
   const { groupState } = useContext(GroupContext);
-  const { creditDispatch } = useContext(CreditContext);
+  const { newGroupState } = useContext(NewGroupContext);
+  const { creditDispatch } = useContext(NewCreditContext);
+  // const { creditDispatch } = useContext(CreditContext);
   const [selectYear, setSelectYear] = useState("*");
+  const [selectUniver, setSelectUniver] = useState("*");
   const [selectGroup, setSelectGroup] = useState("*");
   const [selectMajor, setSelectMajor] = useState("*");
   const [enableAddMajor, setEnableAddMajor] = useState(false);
   const [enabledMinor, setEnabledMinor] = useState(false);
+  const [selectAddUniver, setSelectAddUniver] = useState("*");
   const [selectAddGroup, setSelectAddGroup] = useState("*");
   const [selectAddMajor, setSelectAddMajor] = useState("*");
   const [majorType, setMajorType] = useState({
@@ -49,7 +56,7 @@ const CalcBox = () => {
   // 1. 입학연도 : 드롭다운
   const handleOnChangeSelectYear = (e) => {
     setSelectYear(e.target.value);
-    if (e.target.value === "*") {
+    if (e.target.value !== selectYear) {
       setSelectGroup("*");
       setSelectMajor("*");
       setSelectAddGroup("*");
@@ -58,12 +65,23 @@ const CalcBox = () => {
   };
 
   // 2. 소속 : 드롭다운
-  const handleOnChangeSelectGroup = (e) => {
-    setSelectGroup(e.target.value);
-    if (e.target.value === "*") setSelectMajor("*");
+  const handleOnChangeSelectUniver = (e) => {
+    setSelectUniver(e.target.value);
+    if (e.target.value !== selectUniver) {
+      setSelectGroup("*");
+      setSelectMajor("*");
+    }
   };
 
-  // 3. 학부(학과) : 드롭다운
+  // 3. 학부 : 드롭다운
+  const handleOnChangeSelectGroup = (e) => {
+    setSelectGroup(e.target.value);
+    if (e.target.value !== selectGroup) {
+      setSelectMajor("*");
+    }
+  };
+
+  // 4. 학과 : 드롭다운
   const handleOnChangeSelectMajor = (e) => {
     setSelectMajor(e.target.value);
   };
@@ -82,23 +100,43 @@ const CalcBox = () => {
   const handleOnClickEnabledMinor = (e) => {
     setEnabledMinor(!enabledMinor);
   };
-
-  // 4. 소속(추가전공) : 드롭다운
+  // 5. 소속(추가전공) : 드롭다운`
+  const handleOnChangeSelectAddUniver = (e) => {
+    selectAddUniver(e.target.value);
+    if (e.target.value !== selectAddUniver) {
+      setSelectAddGroup("*");
+      setSelectAddMajor("*");
+    }
+  };
+  // 6. 학부(추가전공) : 드롭다운
   const handleOnChangeSelectAddGroup = (e) => {
     setSelectAddGroup(e.target.value);
-    if (e.target.value === "*") setSelectAddMajor("*");
+    if (e.target.value !== selectAddMajor) {
+      setSelectAddMajor("*");
+    }
   };
-  // 5. 학부(추가전공) : 드롭다운
+  // 7. 학과(추가전공) : 드롭다운
   const handleOnChangeSelectAddMajor = (e) => {
     setSelectAddMajor(e.target.value);
   };
 
   // 적용 : 버튼
   const handleOnClickApplyBtn = () => {
-    if (selectMajor === "*") return alert("'학과(전공)' 누락");
+    if (selectYear === "*")
+      return alert(`'${newGroupState["year"].header}' 누락`);
+    else if (selectUniver === "*")
+      return alert(`'${newGroupState["univer"].header}' 누락`);
+    else if (selectGroup === "*")
+      return alert(`'${newGroupState["group"].header}' 누락`);
+    else if (selectMajor === "*")
+      return alert(`'${newGroupState["major"].header}' 누락`);
     if (enableAddMajor) {
-      if (selectAddGroup === "*") return alert("'소속(추가전공)' 누락");
-      if (selectAddMajor === "*") return alert("'학과(추가전공)' 누락");
+      if (selectAddUniver === "*")
+        return alert(`'${newGroupState["add_univer"].header}' 누락`);
+      else if (selectAddUniver === "*")
+        return alert(`'${newGroupState["add_group"].header}' 누락`);
+      else if (selectAddUniver === "*")
+        return alert(`'${newGroupState["add_major"].header}' 누락`);
     }
 
     let newMajorType = majorType;
@@ -119,15 +157,14 @@ const CalcBox = () => {
       }
     }
     setMajorType(newMajorType);
-
-    const newSelectCredit = creditDispatch(selectMajor, {
+    const newSelectCredit = creditDispatch(selectGroup, {
       type: "GET_CREDIT",
     });
     setSelectCredit(newSelectCredit);
     // 수정된 정보로 형식 재요청
     setUserCredit(
       creditDispatch(
-        { selectCredit: newSelectCredit, other: "", majorType: newMajorType },
+        { selectCredit: newSelectCredit, majorType: newMajorType },
         { type: "CREDIT_CONVERT_USER" }
       )
     );
@@ -282,33 +319,41 @@ const CalcBox = () => {
   // 최적화 작업 필요
   const handle = {
     handleOnChangeSelectYear,
+    handleOnChangeSelectUniver,
     handleOnChangeSelectGroup,
     handleOnChangeSelectMajor,
     handleOnClickMajorType,
     handleOnClickAddMajorView,
     handleOnClickEnabledMinor,
+    handleOnChangeSelectAddUniver,
     handleOnChangeSelectAddGroup,
     handleOnChangeSelectAddMajor,
     handleOnClickApplyBtn,
   };
   const majorInfo = {
     selectYear,
+    selectUniver,
     selectGroup,
     selectMajor,
     majorType,
     enableAddMajor,
+    selectAddUniver,
     selectAddGroup,
     selectAddMajor,
   };
   useEffect(() => {
     // console.log("------------------");
-    // console.log(majorType);
+    console.log(selectYear);
+    console.log(selectUniver);
+    console.log(selectGroup);
+    console.log(selectMajor);
     // console.log("------------------");
   });
   return (
     <>
       <div className="calc-box-wrapper">
-        <MajorCalcOptionBox info={majorInfo} handle={handle} />
+        {/* <MajorCalcOptionBox info={majorInfo} handle={handle} /> */}
+        <NewMajorOptionBox info={majorInfo} handle={handle} />
         <div className="credit-list-box-wrapper">
           <div className="credit-calc-box">
             <ViewHeader headerList={groupState.headerView.header} />
