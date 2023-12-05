@@ -1,15 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import GroupContext from "../../contexts/GroupContext";
 import CreditContext from "../../contexts/CreditContext";
-import MajorCalcOptionBox from "./MajorCalcOptionBox";
 import ViewCredit from "./ViewCredit";
-import NewGroupContext from "../../contexts/NewGroupContext";
-import NewMajorOptionBox from "./NewMajorOptionBox";
-import NewCreditContext from "../../contexts/NewCreditContext";
+import MajorCalcOptionBox from "./MajorOptionBox";
+import GroupContext from "../../contexts/GroupContext";
 
 const CalcBox = () => {
-  const { newGroupState } = useContext(NewGroupContext);
-  const { creditDispatch } = useContext(NewCreditContext);
+  const { groupState } = useContext(GroupContext);
+  const { creditDispatch } = useContext(CreditContext);
   const [selectYear, setSelectYear] = useState("*");
   const [selectUniver, setSelectUniver] = useState("*");
   const [selectGroup, setSelectGroup] = useState("*");
@@ -120,21 +117,20 @@ const CalcBox = () => {
 
   // 적용 : 버튼
   const handleOnClickApplyBtn = () => {
-    if (selectYear === "*")
-      return alert(`'${newGroupState["year"].header}' 누락`);
+    if (selectYear === "*") return alert(`'${groupState["year"].header}' 누락`);
     else if (selectUniver === "*")
-      return alert(`'${newGroupState["univer"].header}' 누락`);
+      return alert(`'${groupState["univer"].header}' 누락`);
     else if (selectGroup === "*")
-      return alert(`'${newGroupState["group"].header}' 누락`);
+      return alert(`'${groupState["group"].header}' 누락`);
     else if (selectMajor === "*")
-      return alert(`'${newGroupState["major"].header}' 누락`);
+      return alert(`'${groupState["major"].header}' 누락`);
     if (enableAddMajor) {
       if (selectAddUniver === "*")
-        return alert(`'${newGroupState["add_univer"].header}' 누락`);
+        return alert(`'${groupState["add_univer"].header}' 누락`);
       else if (selectAddUniver === "*")
-        return alert(`'${newGroupState["add_group"].header}' 누락`);
+        return alert(`'${groupState["add_group"].header}' 누락`);
       else if (selectAddUniver === "*")
-        return alert(`'${newGroupState["add_major"].header}' 누락`);
+        return alert(`'${groupState["add_major"].header}' 누락`);
     }
 
     let newMajorType = majorType;
@@ -168,7 +164,6 @@ const CalcBox = () => {
     );
   };
 
-  // 계산로직 구현 예정
   const handleOnChangeCredit = {
     onChangeSubject: (e, idx) => {
       let value = handleOnChangeCredit.input(e);
@@ -340,22 +335,19 @@ const CalcBox = () => {
     selectAddMajor,
   };
   useEffect(() => {
-    // console.log("------------------");
-    console.log(selectYear);
-    console.log(selectUniver);
+    console.log("------------------");
     console.log(selectGroup);
     console.log(selectMajor);
-    // console.log("------------------");
+    console.log("------------------");
   });
   return (
     <>
-      <div className="calc-box-wrapper">
-        {/* <MajorCalcOptionBox info={majorInfo} handle={handle} /> */}
-        <NewMajorOptionBox info={majorInfo} handle={handle} />
+      <div className="calc-slide-wrapper">
+        <MajorCalcOptionBox info={majorInfo} handle={handle} />
         <div className="credit-list-box-wrapper">
           <div className="credit-calc-box">
-            <ViewHeader headerList={newGroupState.headerView.header} />
-            <ViewHeader headerList={newGroupState.headerView.subHeader} />
+            <ViewHeader headerList={groupState.headerView.header} />
+            <ViewHeader headerList={groupState.headerView.subHeader} />
             <ViewCredit header={"졸업기준"} credit={userCredit} />
             <ViewCredit
               header={"취득"}
@@ -366,7 +358,7 @@ const CalcBox = () => {
             />
             <ViewCredit header={"인정"} credit={applyCredit} />
             <ViewCredit header={"미취득"} credit={needCredit} />
-            {/* <ViewCredit header={"개발예정"} credit={appendCredit} /> */}
+            <ViewCredit header={"개발예정"} credit={appendCredit} />
           </div>
         </div>
       </div>

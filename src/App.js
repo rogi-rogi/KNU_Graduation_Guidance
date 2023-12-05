@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import "./global.scss";
 import LoadPage from "./pages/LoadPage";
 import Home from "./pages/Home";
 

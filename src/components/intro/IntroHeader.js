@@ -10,15 +10,14 @@ const IntroHeader = () => {
     return () => load();
   }, []);
   return (
-    <div
-      className="page-content-header"
-      style={{
-        backgroundImage: `url("/assets/images/KNU_MAIN.jpg")`,
-      }}
-    >
-      <div className="header-title">
-        <h1 style={{ opacity: load ? 1 : 0 }}>pz write intro header</h1>
-        <h1 style={{ opacity: load ? 1 : 0 }}>pz write sub intro header</h1>
+    <div className="intro-header">
+      <div className="header-wrapper">
+        <h1 style={{ opacity: load ? 1 : 0 }}>
+          {"너의 시간,    내가 아껴줄게"}
+        </h1>
+        <h1 style={{ opacity: load ? 1 : 0 }}>
+          {"교학팀 일자리 뺏기 프로젝트"}
+        </h1>
       </div>
     </div>
   );

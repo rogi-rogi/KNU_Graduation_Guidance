@@ -1,9 +1,10 @@
 import { useState } from "react";
+import "./Page.scss";
 import WritePage from "../components/board/WritePage";
 import ReadPage from "../components/board/ReadPage";
 import BoardListPage from "../components/board/BordListPage";
 
-const Board = () => {
+const BoardPage = () => {
   const [current, setCurrent] = useState("board");
   const [selectTodo, setSelectTodo] = useState(null);
 
@@ -56,4 +57,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default BoardPage;

@@ -1,11 +1,11 @@
 import "./Page.scss";
-
+import "../components/intro/intro.scss";
 import IntroHeader from "../components/intro/IntroHeader.js";
-import IntroCard from "../components/intro/IntroCard.js";
+import IntroSlideWrapper from "../components/intro/IntroSlideWrapper.js";
+import IntroCardWrapper from "../components/intro/IntroCradWrapper.js";
 import DevSlide from "../components/intro/DevSlide.js";
-import SlideWrapper from "../components/intro/SlideWrapper.js";
 
-const Intro = ({ onClick }) => {
+const IntroPage = ({ onClick }) => {
   const introCard = [
     {
       head: "내가 알지 못하는 것. 필요해서 만듦.",
@@ -31,19 +31,19 @@ const Intro = ({ onClick }) => {
     },
   ];
   return (
-    <div className="page">
-      <IntroHeader />
+    <div className="page-wrapper">
       <div className="page-content-wrapper">
-        <div className="intro-slide-wrapper">
-          {introCard.map((card) => (
-            <IntroCard card={card} />
-          ))}
+        <IntroHeader />
+        <IntroCardWrapper introCard={introCard} />
+        <IntroSlideWrapper onClick={onClick} />
+        <DevSlide />
+        <div className="div-bar"></div>
+        <div className="footer">
+          <div className="title">2023-2 강남대학교 웹개발응용 기말프로젝트</div>
         </div>
       </div>
-      <SlideWrapper onClick={onClick} />
-      <DevSlide />
     </div>
   );
 };
 
-export default Intro;
+export default IntroPage;

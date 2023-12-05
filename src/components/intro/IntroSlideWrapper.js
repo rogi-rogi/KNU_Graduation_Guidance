@@ -1,6 +1,7 @@
 import CalcSlide from "./CalcSlide";
 import { useEffect, useRef, useState } from "react";
-const SlideWrapper = ({ onClick }) => {
+
+const IntroSlideWrapper = ({ onClick }) => {
   const [isVisible, setIsVisible] = useState([false, false]);
   const wrapperRef = useRef(null);
   const handleScroll = () => {
@@ -28,4 +29,4 @@ const SlideWrapper = ({ onClick }) => {
     </div>
   );
 };
-export default SlideWrapper;
+export default IntroSlideWrapper;

@@ -1,0 +1,172 @@
+@import "../../global.scss";
+
+.calc-slide-wrapper {
+  margin-top: 200px;
+  //   width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+
+  .option-box-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    max-height: 350x;
+    min-height: min-content;
+    padding: 10px 10px;
+    gap: 10px;
+    background-color: $WRAPPER_COLOR;
+
+    border: 3px solid $MAIN_COLOR;
+    border-radius: 10px;
+    box-shadow: $SUB_BOX_SHADOW;
+    box-sizing: border-box;
+    .list-box-wrapper {
+      // width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      gap: 10px;
+      .list-box {
+        width: 300px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 10px;
+        background-color: $WRAPPER_COLOR;
+        box-sizing: content-box;
+        box-shadow: $SUB_BOX_SHADOW;
+        border-radius: 5em;
+        label {
+          line-height: 30px;
+        }
+        select {
+          width: 130px;
+          height: 25px;
+          box-sizing: border-box;
+          border: 1px solid $WRAPPER_COLOR;
+          border-radius: 10px;
+          padding-left: 3px;
+          &:focus {
+            border-color: rgb(14, 90, 255);
+            outline: 1px solid $WRAPPER_COLOR;
+            background-color: $WRAPPER_COLOR;
+          }
+        }
+      }
+    }
+
+    .add-major-box-wrapeer {
+      // display: flex;
+      // flex-direction: column;
+      height: 100%;
+      max-width: 320px;
+      // background-color: $WRAPPER_COLOR;
+      .add-major-option {
+        min-width: 320px;
+        white-space: nowrap;
+        display: flex;
+        justify-content: space-around;
+        // background-color: $WRAPPER_COLOR;
+      }
+
+      .add-major-list-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .major-type-box {
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          padding-right: 27px;
+        }
+        .option-box-wrapper {
+          width: 100%;
+          height: 100%;
+          border: none;
+          background-color: inherit;
+          box-shadow: none;
+          padding: 0;
+        }
+      }
+    }
+
+    .apply-btn {
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      background-color: $WRAPPER_COLOR;
+      box-sizing: content-box;
+      box-shadow: $SUB_BOX_SHADOW;
+      border-color: $MAIN_COLOR;
+      border-radius: 5em;
+    }
+  }
+
+  .credit-list-box-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $MAIN_COLOR;
+    border-radius: 10px;
+    width: min-content;
+    height: 295px;
+    .credit-calc-box {
+      background-color: $WRAPPER_COLOR;
+      display: inline-grid;
+      width: min-content;
+      height: min-content;
+      grid-template-columns: 80px repeat(11, 50px);
+      grid-template-rows: 45px repeat(6, 35px);
+      text-align: center;
+    }
+    line-height: 35px;
+    // font-size:10px;
+    .credit-calc-box > :first-child,
+    .credit-calc-box > :nth-child(5),
+    .credit-calc-box > :nth-child(6) {
+      line-height: 80px;
+      grid-row: span 2;
+    }
+    .credit-calc-box > :nth-child(2) {
+      grid-column: span 5;
+      line-height: 45px;
+    }
+    .credit-calc-box > :nth-child(3),
+    .credit-calc-box > :nth-child(4) {
+      line-height: 45px;
+      grid-column: span 2;
+    }
+
+    .head {
+      border: 0.7px solid $WRAPPER_COLOR;
+      box-sizing: border-box;
+      background-color: $MAIN_COLOR;
+    }
+    .sum {
+      border-radius: 5px;
+    }
+    input {
+      cursor: pointer;
+      width: 50px;
+      text-align: center;
+      box-sizing: border-box;
+      background-color: $WRAPPER_COLOR;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      font-family: "Orbit";
+      font-size: 16px;
+      &:focus {
+        background-color: white;
+      }
+      &:disabled {
+        background-color: $DISABLED_COLOR;
+      }
+    }
+  }
+}

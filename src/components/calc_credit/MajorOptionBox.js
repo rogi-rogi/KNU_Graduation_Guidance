@@ -1,34 +1,34 @@
 import { useContext } from "react";
 import GroupListBox from "./GroupListBox";
-import NewGroupContext from "../../contexts/NewGroupContext";
+import GroupContext from "../../contexts/GroupContext";
 
-const NewMajorOptionBox = ({ info, handle }) => {
-  const { newGroupState } = useContext(NewGroupContext);
+const MajorCalcOptionBox = ({ info, handle }) => {
+  const { groupState } = useContext(GroupContext);
   return (
     <div className="option-box-wrapper">
       <div className="list-box-wrapper">
         <GroupListBox
-          header={newGroupState["year"].header}
-          list={newGroupState["year"].list["*"]}
+          header={groupState["year"].header}
+          list={groupState["year"].list["*"]}
           onChange={handle.handleOnChangeSelectYear}
           selected={info.selectYear}
         />
 
         <GroupListBox
-          header={newGroupState["univer"].header}
-          list={newGroupState["univer"].list[info.selectYear]}
+          header={groupState["univer"].header}
+          list={groupState["univer"].list[info.selectYear]}
           onChange={handle.handleOnChangeSelectUniver}
           selected={info.selectUniver}
         />
         <GroupListBox
-          header={newGroupState["group"].header}
-          list={newGroupState["group"].list[info.selectUniver]}
+          header={groupState["group"].header}
+          list={groupState["group"].list[info.selectUniver]}
           onChange={handle.handleOnChangeSelectGroup}
           selected={info.selectGroup}
         />
         <GroupListBox
-          header={newGroupState["major"].header}
-          list={newGroupState["major"].list[info.selectGroup]}
+          header={groupState["major"].header}
+          list={groupState["major"].list[info.selectGroup]}
           onChange={handle.handleOnChangeSelectMajor}
           selected={info.selectMajor}
         />
@@ -67,22 +67,22 @@ const NewMajorOptionBox = ({ info, handle }) => {
           </div>
           <div className="option-box-wrapper list-box-wrapper">
             <GroupListBox
-              header={newGroupState["add_univer"].header}
-              list={newGroupState["univer"].list[info.selectYear]}
+              header={groupState["add_univer"].header}
+              list={groupState["univer"].list[info.selectYear]}
               onChange={handle.handleOnChangeSelectAddUniver}
-              selected={info.selectAddGroup}
+              selected={info.selectAddUniver}
               disabled={!info.enableAddMajor}
             />
             <GroupListBox
-              header={newGroupState["add_group"].header}
-              list={newGroupState["group"].list[info.selectAddUniver]}
+              header={groupState["add_group"].header}
+              list={groupState["group"].list[info.selectAddUniver]}
               onChange={handle.handleOnChangeSelectAddGroup}
               selected={info.selectAddGroup}
               disabled={!info.enableAddMajor}
             />
             <GroupListBox
-              header={newGroupState["add_major"].header}
-              list={newGroupState["major"].list[info.selectAddGroup]}
+              header={groupState["add_major"].header}
+              list={groupState["major"].list[info.selectAddGroup]}
               onChange={handle.handleOnChangeSelectAddMajor}
               selected={info.selectAddMajor}
               disabled={!info.enableAddMajor}
@@ -96,4 +96,4 @@ const NewMajorOptionBox = ({ info, handle }) => {
     </div>
   );
 };
-export default NewMajorOptionBox;
+export default MajorCalcOptionBox;

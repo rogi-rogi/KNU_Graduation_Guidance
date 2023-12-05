@@ -1,23 +1,23 @@
 import "./Page.scss";
+import "../global.scss";
 import { useState } from "react";
-
 import MenuBar from "../components/menu_bar/MenuBar.js";
-import Intro from "./Intro.js";
-import CalcCredit from "./CalcCredit.js";
-import Board from "./Board.js";
+import IntroPage from "./IntroPage.js";
+import CalcPage from "./CalcPage.js";
+import BoardPage from "./BoardPage.js";
 import TestPage from "./TestPage.js";
 
 const Home = () => {
   const titles = ["소개", "학점계산", "게시판", "Test"];
-  const [pageNum, setPageNum] = useState(2);
+  const [pageNum, setPageNum] = useState(0);
 
   const handleChangePage = (id) => {
     setPageNum(id);
   };
   const pages = [
-    <Intro onClick={handleChangePage} />,
-    <CalcCredit />,
-    <Board />,
+    <IntroPage onClick={handleChangePage} />,
+    <CalcPage />,
+    <BoardPage />,
     <TestPage />,
   ];
   const pageList = titles.map((title, idx) => ({ title, page: pages[idx] }));

@@ -1,0 +1,178 @@
+@import "../../global.scss";
+
+.intro-header {
+  width: 100%;
+  display: flex;
+  height: 990px;
+  background: no-repeat url("../../assets/images/KNU_MAIN.jpg");
+  background-size: cover;
+  border-bottom: 30px solid $WRAPPER_COLOR;
+  .header-wrapper {
+    margin-top: 200px;
+    margin-left: 250px;
+    height: 300px;
+    width: 700px;
+    text-align: left;
+    h1 {
+      white-space: pre-wrap;
+      margin: 0;
+    }
+    h1:first-child {
+      transition: 1s ease-out;
+      font-size: 90px;
+    }
+    h1:nth-child(2) {
+      margin-top: 80px;
+      margin-left: 30px;
+      transition: 1.5s ease-in;
+      font-size: 40px;
+      color: $WRAPPER_COLOR;
+    }
+  }
+}
+
+.intro-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 1200px;
+  gap: 20px;
+  perspective: 1000px;
+  .intro-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 360px;
+    height: 400px;
+    margin: 15px 0;
+    padding: 0 15px;
+    text-align: left;
+    border: 8px solid $MAIN_COLOR;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: $WRAPPER_COLOR;
+    transition: 0.4s ease-out;
+    &:hover {
+      h3 {
+        background-color: $MAIN_COLOR;
+        color: bisque;
+      }
+      transform: rotate3d(0.7, -2, 0.4, 10deg);
+      box-shadow: $BOX_SHADOW;
+    }
+    h3 {
+      width: min-content;
+      font-size: 30px;
+      line-height: 50px;
+      width: 290px;
+      border-radius: 10px;
+      transition: background-color 0.5s ease-out;
+    }
+    p {
+      font-weight: bold;
+    }
+  }
+}
+
+.intro-calc-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $WRAPPER_COLOR;
+  height: 700px;
+  .slide {
+    display: flex;
+    width: min-content;
+    gap: 80px;
+    .title,
+    .image {
+      opacity: 0;
+      height: 300px;
+      margin-top: 200px;
+      border-radius: 10px;
+      // transition: margin-top 1.8s, opacity 1.5s ease-in-out;
+
+      &.visible {
+        opacity: 1;
+        margin-top: 100px;
+      }
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 400px;
+      background-color: $WRAPPER_COLOR;
+      box-shadow: $SUB_BOX_SHADOW;
+      h1 {
+        width: 400px;
+        margin: 0;
+        margin-top: 30px;
+        padding-left: 70px;
+        font-size: 35px;
+      }
+      .content {
+        margin-top: 40px;
+        text-align: left;
+        width: 300px;
+        font-size: 20px;
+        line-height: 40px;
+      }
+      transition: background-color 0.5s ease-out, margin-top 1.8s,
+        opacity 1.5s ease-in-out;
+      &:hover {
+        cursor: pointer;
+        background-color: $MAIN_COLOR;
+        box-shadow: $SUB_BOX_SHADOW;
+      }
+    }
+
+    .image {
+      width: 900px;
+      height: 300px;
+      background: url("/assets/images/calc-example1.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: margin-top 1.8s, opacity 1.5s ease-in-out;
+    }
+  }
+}
+
+.dev-wrapper {
+  // width: 100%;
+  height: 100%;
+  background-color: black;
+  .dev-icon-wrapper {
+    min-width: min-content;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    // background-color: $MAIN_COLOR;
+    background: linear-gradient(
+      to right,
+      black,
+      $MAIN_COLOR,
+      $DISABLED_COLOR,
+      $MAIN_COLOR,
+      black
+    );
+  }
+}
+
+.div-bar {
+  height: 30px;
+  background: linear-gradient(rgb(94, 94, 94), black);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  background-color: black;
+  color: white;
+  .title {
+    font-size: 20px;
+  }
+}
