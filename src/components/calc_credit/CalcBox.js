@@ -3,6 +3,7 @@ import CreditContext from "../../contexts/CreditContext";
 import ViewCredit from "./ViewCredit";
 import MajorCalcOptionBox from "./MajorOptionBox";
 import GroupContext from "../../contexts/GroupContext";
+import CalcTable from "./CalcTable";
 
 const CalcBox = () => {
   const { groupState } = useContext(GroupContext);
@@ -340,39 +341,20 @@ const CalcBox = () => {
     console.log(selectMajor);
     console.log("------------------");
   });
+  const creditInfo = {
+    userCredit,
+    getCredit,
+    applyCredit,
+    needCredit,
+    appendCredit,
+    majorType,
+  };
   return (
     <>
       <div className="calc-slide-wrapper">
         <MajorCalcOptionBox info={majorInfo} handle={handle} />
-        <div className="credit-list-box-wrapper">
-          <div className="credit-calc-box">
-            <ViewHeader headerList={groupState.headerView.header} />
-            <ViewHeader headerList={groupState.headerView.subHeader} />
-            <ViewCredit header={"졸업기준"} credit={userCredit} />
-            <ViewCredit
-              header={"취득"}
-              credit={getCredit}
-              onChange={handleOnChangeCredit}
-              majorType={majorType}
-              type={"WRITE"}
-            />
-            <ViewCredit header={"인정"} credit={applyCredit} />
-            <ViewCredit header={"미취득"} credit={needCredit} />
-            <ViewCredit header={"개발예정"} credit={appendCredit} />
-          </div>
-        </div>
+        <CalcTable creditInfo={creditInfo} onChange={handleOnChangeCredit} />
       </div>
-    </>
-  );
-};
-
-const ViewHeader = ({ headerList }) => {
-  return (
-    //context에서 id할당 필요
-    <>
-      {headerList.map((title) => (
-        <div className="head">{title}</div>
-      ))}
     </>
   );
 };

@@ -4,6 +4,9 @@ const DevSlide = () => {
   return (
     <div className="dev-wrapper">
       <div className="dev-icon-wrapper">
+        <div className="title-wrapper">
+          <div className="title">Use Stack</div>
+        </div>
         <ReactMarkdown
           components={{
             img: ({ node, ...props }) => (
