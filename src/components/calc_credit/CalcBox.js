@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import CreditContext from "../../contexts/CreditContext";
-import ViewCredit from "./ViewCredit";
 import MajorCalcOptionBox from "./MajorOptionBox";
 import GroupContext from "../../contexts/GroupContext";
 import CalcTable from "./CalcTable";
