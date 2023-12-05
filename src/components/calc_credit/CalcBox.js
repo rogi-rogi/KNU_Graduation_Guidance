@@ -8,10 +8,8 @@ import NewMajorOptionBox from "./NewMajorOptionBox";
 import NewCreditContext from "../../contexts/NewCreditContext";
 
 const CalcBox = () => {
-  const { groupState } = useContext(GroupContext);
   const { newGroupState } = useContext(NewGroupContext);
   const { creditDispatch } = useContext(NewCreditContext);
-  // const { creditDispatch } = useContext(CreditContext);
   const [selectYear, setSelectYear] = useState("*");
   const [selectUniver, setSelectUniver] = useState("*");
   const [selectGroup, setSelectGroup] = useState("*");
@@ -102,7 +100,7 @@ const CalcBox = () => {
   };
   // 5. 소속(추가전공) : 드롭다운`
   const handleOnChangeSelectAddUniver = (e) => {
-    selectAddUniver(e.target.value);
+    setSelectAddUniver(e.target.value);
     if (e.target.value !== selectAddUniver) {
       setSelectAddGroup("*");
       setSelectAddMajor("*");
@@ -356,8 +354,8 @@ const CalcBox = () => {
         <NewMajorOptionBox info={majorInfo} handle={handle} />
         <div className="credit-list-box-wrapper">
           <div className="credit-calc-box">
-            <ViewHeader headerList={groupState.headerView.header} />
-            <ViewHeader headerList={groupState.headerView.subHeader} />
+            <ViewHeader headerList={newGroupState.headerView.header} />
+            <ViewHeader headerList={newGroupState.headerView.subHeader} />
             <ViewCredit header={"졸업기준"} credit={userCredit} />
             <ViewCredit
               header={"취득"}

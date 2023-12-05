@@ -9,7 +9,7 @@ import TestPage from "./TestPage.js";
 
 const Home = () => {
   const titles = ["소개", "학점계산", "게시판", "Test"];
-  const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useState(2);
 
   const handleChangePage = (id) => {
     setPageNum(id);
