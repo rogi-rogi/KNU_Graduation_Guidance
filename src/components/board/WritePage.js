@@ -6,11 +6,11 @@ const WritePage = ({ setCurrent, setTodos, changePageForBoardList }) => {
   const handleOnClickSetTodos = () => {
     setTodos((prev) => {
       const date = new Date();
-      const dateForm = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+      const dateForm = `${date.getHours()}:${date.getMinutes()}`;
 
       changePageForBoardList();
       return [
-        { id: prev.length + 1, title, contents, date: dateForm },
+        { id: prev.length + 1, title, contents, date: dateForm ,show:0},
         ...prev,
       ];
     });

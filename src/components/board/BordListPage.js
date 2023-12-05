@@ -5,9 +5,10 @@ const BoardListPage = ({
 }) => {
   return (
     <div>
+      
       {todos.map((todo) => (
         <div key={todo.id} onClick={() => handleOnClickSelectTodo(todo)}>
-          {todo.id} {todo.title} {todo.date}
+          {todo.id} {todo.title} {todo.date} {todo.show}
         </div>
       ))}
       <button onClick={changePageForWrite}>글쓰기</button>

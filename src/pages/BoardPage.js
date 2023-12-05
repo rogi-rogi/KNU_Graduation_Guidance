@@ -12,6 +12,7 @@ const BoardPage = () => {
 
   const handleOnClickSelectTodo = (todo) => {
     setSelectTodo(todo);
+    todo.show +=1;
     changePageForRead();
   };
   const changePageForBoardList = () => {
