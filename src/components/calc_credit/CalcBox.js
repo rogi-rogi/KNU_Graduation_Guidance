@@ -49,14 +49,14 @@ const CalcBox = () => {
     creditDispatch("*", { type: "INIT_USER" })
   );
   const initCreditGraph = [
-    { label: "1-1", credit: 0 },
-    { label: "1-2", credit: 0 },
-    { label: "2-1", credit: 0 },
-    { label: "2-2", credit: 0 },
-    { label: "3-1", credit: 0 },
-    { label: "3-2", credit: 0 },
-    { label: "4-1", credit: 0 },
-    { label: "4-2", credit: 0 },
+    { label: "1-1", basicCredit: 0, choiceCredit: 0 },
+    { label: "1-2", basicCredit: 0, choiceCredit: 0 },
+    { label: "2-1", basicCredit: 0, choiceCredit: 0 },
+    { label: "2-2", basicCredit: 0, choiceCredit: 0 },
+    { label: "3-1", basicCredit: 0, choiceCredit: 0 },
+    { label: "3-2", basicCredit: 0, choiceCredit: 0 },
+    { label: "4-1", basicCredit: 0, choiceCredit: 0 },
+    { label: "4-2", basicCredit: 0, choiceCredit: 0 },
   ];
   const [creditGraph, setCreditGraph] = useState([...initCreditGraph]);
   const [pocketSubjectList, setPocketSubjectList] = useState([
@@ -382,7 +382,10 @@ const CalcBox = () => {
               .reduce((prev, cur) => prev + cur);
       if (creditSum + pickSubject.credit <= (selectSemester >= 5 ? 22 : 19)) {
         const newCreditGraph = [...creditGraph];
-        newCreditGraph[selectSemester - 1].credit += pickSubject.credit;
+        if (pickSubject.type === "basic")
+          newCreditGraph[selectSemester - 1].basicCredit += pickSubject.credit;
+        else if (pickSubject.type === "choice")
+          newCreditGraph[selectSemester - 1].choiceCredit += pickSubject.credit;
         newPocketSubjectList[selectSemester - 1].push(pickSubject);
         setCreditGraph(newCreditGraph);
         setPocketSubjectList(newPocketSubjectList);

@@ -7,13 +7,19 @@ const CalcGraph = ({ list }) => {
             <div>
               <div className="bar-wrapper">
                 <div
-                  className="bar"
+                  className="bar-basic"
                   style={{
-                    transform: `translateY(${220 - 10 * bar.credit}px)`,
+                    transform: `translateY(${220 - 10 * bar.basicCredit}px)`,
+                  }}
+                />
+                <div
+                  className="bar-choice"
+                  style={{
+                    transform: `translateY(${220 - 10 * bar.choiceCredit}px)`,
                   }}
                 />
               </div>
-              <div className="credit">{bar.credit}</div>
+              <div className="credit">{bar.basicCredit + bar.choiceCredit}</div>
               <div className="label">{bar.label}</div>
             </div>
           ))}
