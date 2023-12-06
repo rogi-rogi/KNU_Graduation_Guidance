@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import GroupContext from "../../contexts/GroupContext";
+import { useContext } from "react";
+import GroupContext from "../../../contexts/GroupContext";
 import ViewHeader from "./ViewHeader";
 import ViewCredit from "./ViewCredit";
 
@@ -9,11 +9,10 @@ const CalcTable = ({ creditInfo, onChange }) => {
     getCredit,
     applyCredit,
     needCredit,
-    appendCredit,
+    loadMapCredit,
     majorType,
   } = creditInfo;
   const { groupState } = useContext(GroupContext);
-  // useEffect(() => {}, [appendCredit]);
   return (
     <div className="credit-list-box-wrapper">
       <div className="credit-calc-box">
@@ -29,7 +28,7 @@ const CalcTable = ({ creditInfo, onChange }) => {
         />
         <ViewCredit header={"인정"} credit={applyCredit} />
         <ViewCredit header={"미취득"} credit={needCredit} />
-        <ViewCredit header={"로드맵"} credit={appendCredit} />
+        <ViewCredit header={"로드맵"} credit={loadMapCredit} />
       </div>
     </div>
   );

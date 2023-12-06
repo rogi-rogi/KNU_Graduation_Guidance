@@ -173,7 +173,6 @@
 
 .loadmap-slide-wrapper {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: $WRAPPER_COLOR;
@@ -217,6 +216,29 @@
     }
   }
   .option-bar-wrapper {
-    background-color: black;
+    height: 360px;
+    overflow: hidden;
+    .filter-wrapper {
+      .semester-btn,
+      .init-btn {
+        height: 50px;
+        width: 80px;
+      }
+    }
+    .choice-subject-wrapper {
+      overflow-y: scroll;
+      height: 100%;
+      width: 720px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .subject-wrapper {
+        button {
+          height: 50px;
+          line-height: 50px;
+          width: 180px;
+        }
+      }
+    }
   }
 }
