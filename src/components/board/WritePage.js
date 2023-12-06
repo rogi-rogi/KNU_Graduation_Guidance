@@ -17,26 +17,30 @@ const WritePage = ({ setCurrent, setTodos, changePageForBoardList }) => {
   };
 
   return (
-    <div>
-      <div style={{ textAlign: "left" }}>
-        제목
+    <div className="write-wrapper">
+      <div className="write-input-wrapper">
+        <div style={{width:"5%"}}>
+          제목
+        </div>
         <input
-          style={{ width: "500px" }}
+        style={{width:"95%"}}
           type="text"
           onChange={(evt) => setTitle(evt.target.value)}
           value={title}
         />
       </div>
-      <div style={{ textAlign: "left" }}>
-        내용
+      <div className="write-input-wrapper">
+        <div style={{width:"5%"}}>
+          내용
+        </div>
         <textarea
-          style={{ width: "100%", height: "300px" }}
+          style={{ width: "95%", height: "300px" }}
           type="text"
           onChange={(evt) => setContents(evt.target.value)}
           value={contents}
         />
       </div>
-      <div style={{ textAlign: "right" }}>
+      <div className="write-button-wrapper">
         <button
           onClick={() => {
             if (title === "") alert("제목이 입력되지 않았습니다.");

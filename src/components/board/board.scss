@@ -1,3 +1,54 @@
 @import "../../global.scss";
-.board-list-wrapper {
+.board-wrapper {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+
+    .subtitle-board-wrapper{
+        padding-top: 30px;
+        padding-bottom: 10px;
+    }
+    .list-wrapper {
+        display: flex;
+        text-align: center;
+    }
+    .list-button-wrapper{
+        padding-top: 2%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.write-wrapper{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 3%;
+    .write-input-wrapper{
+        display: flex;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    .write-button-wrapper{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.read-wrapper{
+    padding-left: 10%;
+    padding-right: 20%;
+    padding-top: 3%;
+    .read-title-wrapper{
+        display: flex;
+        justify-content: space-between;
+    }
+    .read-contents-wrapper{
+        width: 100%;
+        margin-top: 10px;
+        overflow-wrap: break-word;
+    }
+    .read-button-wrapper{
+        display: flex;
+        justify-content: flex-end;
+    }
 }
