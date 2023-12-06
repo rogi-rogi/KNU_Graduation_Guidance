@@ -6,29 +6,25 @@ const ReadPage = ({ setTodos, todos, changePageForBoardList, selectTodo }) => {
   console.log(todos);
   console.log(selectTodo);
   return (
-    <div style={{ textAlign: "left", marginLeft: "20px" }}>
-      <div
-        style={{
-          width: "500px",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
+    <div className="read-wrapper">
+      <div className="read-title-wrapper">
         <div>제목:{selectTodo.title}</div>
         <div>작성시간:{selectTodo.date}</div>
       </div>
-      <div style={{ width: "60%", height: "100%", marginTop: "20px" }}>
+      <div className="read-contents-wrapper">
         {selectTodo.contents}
       </div>
-      <button
-        onClick={() => {
-          DeleteTodo();
-          changePageForBoardList();
-        }}
-      >
-        삭제하기
-      </button>
-      <button onClick={changePageForBoardList}>돌아가기</button>
+      <div className="read-button-wrapper">
+        <button
+          onClick={() => {
+            DeleteTodo();
+            changePageForBoardList();
+          }}
+        >
+          삭제하기
+        </button>
+        <button onClick={changePageForBoardList}>돌아가기</button>
+      </div>
     </div>
   );
 };

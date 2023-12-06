@@ -26,33 +26,31 @@ const BoardPage = () => {
     setCurrent("contents");
   };
   return (
-    <div className="page" style={{ paddingTop: 120 }}>
+    <div className="page" >
       <div className="page-content-wrapper">
         <div className="page-content">
-          <div>
-            {current === "board" && (
-              <BoardListPage
-                todos={todos}
-                changePageForWrite={changePageForWrite}
-                handleOnClickSelectTodo={handleOnClickSelectTodo}
-              />
-            )}
-            {current === "write" && (
-              <WritePage
-                changePageForBoardList={changePageForBoardList}
-                setTodos={setTodos}
-                todos={todos}
-              />
-            )}
-            {current === "contents" && (
-              <ReadPage
-                setTodos={setTodos}
-                todos={todos}
-                changePageForBoardList={changePageForBoardList}
-                selectTodo={selectTodo}
-              />
-            )}
-          </div>
+          {current === "board" && (
+            <BoardListPage
+              todos={todos}
+              changePageForWrite={changePageForWrite}
+              handleOnClickSelectTodo={handleOnClickSelectTodo}
+            />
+          )}
+          {current === "write" && (
+            <WritePage
+              changePageForBoardList={changePageForBoardList}
+              setTodos={setTodos}
+              todos={todos}
+            />
+          )}
+          {current === "contents" && (
+            <ReadPage
+              setTodos={setTodos}
+              todos={todos}
+              changePageForBoardList={changePageForBoardList}
+              selectTodo={selectTodo}
+            />
+          )}
         </div>
       </div>
     </div>
