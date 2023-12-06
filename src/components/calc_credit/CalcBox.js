@@ -168,12 +168,11 @@ const CalcBox = () => {
 
   const handleOnChangeCredit = {
     onChangeSubject: (e, idx) => {
-      let value = handleOnChangeCredit.input(e);
-      if (value === " ") return;
-      value = Number(value);
-      // get
-      const newGet = getCredit.subject;
-      newGet[idx] = value;
+      const newGet = handleOnChangeCredit.input(getCredit.subject, e, idx);
+      if (newGet === null) {
+        alert("asd");
+        return;
+      }
       newGet[4] = creditDispatch(newGet.slice(0, 4), {
         type: "ARRAY_SUM",
       });
@@ -213,12 +212,11 @@ const CalcBox = () => {
     },
 
     onChangeMajor: (e, idx) => {
-      let value = handleOnChangeCredit.input(e);
-      if (value === " ") return;
-      value = Number(value);
-      // get
-      const newGet = getCredit.major;
-      newGet[idx] = value;
+      const newGet = handleOnChangeCredit.input(getCredit.major, e, idx);
+      if (newGet === null) {
+        alert("asd");
+        return;
+      }
       // apply
       const std = userCredit.major;
       const loadMap = appendCredit.major;
@@ -228,6 +226,11 @@ const CalcBox = () => {
         sumGetBasic < std[0]
           ? [sumGetBasic, sumGetChoice]
           : [std[0], sumGetChoice + (sumGetBasic - std[0])];
+
+      console.log(loadMap);
+      console.log(newApply);
+      console.log(sumGetBasic);
+
       // need
       const newNeed = std.map((credit, i) => {
         const newCredit = credit - newApply[i];
@@ -250,12 +253,11 @@ const CalcBox = () => {
       }));
     },
     onChangeAddMajor: (e, idx) => {
-      let value = handleOnChangeCredit.input(e);
-      if (value === " ") return;
-      value = Number(value);
-      // get
-      const newGet = getCredit.addMajor;
-      newGet[idx] = value;
+      const newGet = handleOnChangeCredit.input(getCredit.addMajor, e, idx);
+      if (newGet === null) {
+        alert("asd");
+        return;
+      }
       // apply
       const std = userCredit.addMajor;
       const loadMap = appendCredit.addMajor;
@@ -314,7 +316,18 @@ const CalcBox = () => {
         sum: newGetCredit.sum,
       }));
     },
-    input: (e) => e.target.value.replace(/[^0-9]/g, " "),
+    input: (list, e = null, idx = -1) => {
+      if (e && idx !== -1) {
+        let value = e.target.value.replace(/[^0-9]/g, " ");
+        if (value === " ") return null;
+        value = Number(value);
+        // get
+        const newList = list;
+        newList[idx] = value;
+        return newList;
+      }
+      return list;
+    },
   };
 
   // 최적화 작업 필요
@@ -352,6 +365,12 @@ const CalcBox = () => {
       type: "CREDIT_SUM",
     });
     setAppendCredit(newAppendCredit);
+    handleOnChangeCredit.onChangeMajor(null, 1);
+    // const tempMajor = sum;
+    // const std = userCredit.major;
+    // const sumApplyBasic = 0;
+    // const sumApplyChoice = applyCredit.major[0];
+    // const newApply = [applyCredit.major[0] + tempMajor < std[0] ? ];
   };
   useEffect(() => {
     console.log("------------------");
