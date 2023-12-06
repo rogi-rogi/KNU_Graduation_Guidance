@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Page.scss";
+import "../components/board/board.scss";
 import WritePage from "../components/board/WritePage";
 import ReadPage from "../components/board/ReadPage";
 import BoardListPage from "../components/board/BordListPage";
@@ -12,7 +13,7 @@ const BoardPage = () => {
 
   const handleOnClickSelectTodo = (todo) => {
     setSelectTodo(todo);
-    todo.show +=1;
+    todo.show += 1;
     changePageForRead();
   };
   const changePageForBoardList = () => {

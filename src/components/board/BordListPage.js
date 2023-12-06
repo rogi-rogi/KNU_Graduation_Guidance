@@ -4,8 +4,7 @@ const BoardListPage = ({
   handleOnClickSelectTodo,
 }) => {
   return (
-    <div>
-      
+    <div className="board-list-wrapper">
       {todos.map((todo) => (
         <div key={todo.id} onClick={() => handleOnClickSelectTodo(todo)}>
           {todo.id} {todo.title} {todo.date} {todo.show}
