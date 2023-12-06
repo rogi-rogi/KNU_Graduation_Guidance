@@ -3,6 +3,7 @@ import CreditContext from "../../contexts/CreditContext";
 import MajorCalcOptionBox from "./MajorOptionBox";
 import GroupContext from "../../contexts/GroupContext";
 import CalcTable from "./CalcTable";
+import LoadMapWrapper from "./LoadMapWrapper";
 
 const CalcBox = () => {
   const { groupState } = useContext(GroupContext);
@@ -47,6 +48,7 @@ const CalcBox = () => {
   const [appendCredit, setAppendCredit] = useState(
     creditDispatch("*", { type: "INIT_USER" })
   );
+  console.log(appendCredit);
 
   // 1. 입학연도 : 드롭다운
   const handleOnChangeSelectYear = (e) => {
@@ -219,10 +221,13 @@ const CalcBox = () => {
       newGet[idx] = value;
       // apply
       const std = userCredit.major;
-      const newApply = [
-        newGet[0] < std[0] ? newGet[0] : std[0],
-        newGet[1] + (newGet[0] < std[0] ? 0 : newGet[0] - std[0]),
-      ];
+      const loadMap = appendCredit.major;
+      const sumGetBasic = newGet[0] + loadMap[0];
+      const sumGetChoice = newGet[1] + loadMap[1];
+      const newApply =
+        sumGetBasic < std[0]
+          ? [sumGetBasic, sumGetChoice]
+          : [std[0], sumGetChoice + (sumGetBasic - std[0])];
       // need
       const newNeed = std.map((credit, i) => {
         const newCredit = credit - newApply[i];
@@ -253,10 +258,13 @@ const CalcBox = () => {
       newGet[idx] = value;
       // apply
       const std = userCredit.addMajor;
-      const newApply = [
-        newGet[0] < std[0] ? newGet[0] : std[0],
-        newGet[1] + (newGet[0] < std[0] ? 0 : newGet[0] - std[0]),
-      ];
+      const loadMap = appendCredit.addMajor;
+      const sumGetBasic = newGet[0] + loadMap[0];
+      const sumGetChoice = newGet[1] + loadMap[1];
+      const newApply =
+        sumGetBasic < std[0]
+          ? [sumGetBasic, sumGetChoice]
+          : [std[0], sumGetChoice + (sumGetBasic - std[0])];
       // need
       const newNeed = std.map((credit, i) => {
         const newCredit = credit - newApply[i];
@@ -334,6 +342,17 @@ const CalcBox = () => {
     selectAddGroup,
     selectAddMajor,
   };
+  const handleAppendClass = (graphCredit) => {
+    const arr = graphCredit.map((bar) => bar.credit);
+    // i-로드맵 전공 분류 로직 필요
+    const sum = arr.reduce((prev, cur) => prev + cur);
+    const newAppendCredit = { ...appendCredit };
+    newAppendCredit.major = [0, sum];
+    newAppendCredit.sum = creditDispatch(newAppendCredit, {
+      type: "CREDIT_SUM",
+    });
+    setAppendCredit(newAppendCredit);
+  };
   useEffect(() => {
     console.log("------------------");
     console.log(selectGroup);
@@ -353,6 +372,9 @@ const CalcBox = () => {
       <div className="calc-slide-wrapper">
         <MajorCalcOptionBox info={majorInfo} handle={handle} />
         <CalcTable creditInfo={creditInfo} onChange={handleOnChangeCredit} />
+      </div>
+      <div className="loadmap-slide-wrapper">
+        <LoadMapWrapper handleAppendClass={handleAppendClass} />
       </div>
     </>
   );
