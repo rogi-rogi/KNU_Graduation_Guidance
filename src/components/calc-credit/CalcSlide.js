@@ -152,10 +152,11 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
       } else {
         newMajorType = {
           ...majorType,
-          addMajor: selectMajor === selectAddMajor ? "doubleIn" : "doubleOut",
+          addMajor: selectGroup === selectAddGroup ? "doubleIn" : "doubleOut",
         };
       }
     }
+    console.log(selectAddMajor);
     setMajorType(newMajorType);
     const newSelectCredit = creditDispatch(selectGroup, {
       type: "GET_CREDIT",
