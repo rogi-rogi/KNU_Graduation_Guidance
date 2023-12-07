@@ -1,5 +1,5 @@
-import IntroCalcSlide from "./IntorCalcSlide";
 import { useEffect, useRef, useState } from "react";
+import IntroCalcSlide from "./IntroCalcSlide";
 
 const IntroSlideWrapper = ({ onClick }) => {
   const [isVisible, setIsVisible] = useState([false, false]);
@@ -28,14 +28,6 @@ const IntroSlideWrapper = ({ onClick }) => {
         wrapperRef={wrapperRef}
         onClick={() => onClick(1)}
       />
-      <div className="bulletin-wrapper">
-        <div className="header">게시판을 통해 고민을 해결해봐요.</div>
-        <IntroCalcSlide
-          isVisible={isVisible}
-          wrapperRef={wrapperRef}
-          onClick={() => onClick(2)}
-        />
-      </div>
     </div>
   );
 };
