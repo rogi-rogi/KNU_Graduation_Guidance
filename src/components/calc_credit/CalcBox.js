@@ -365,6 +365,7 @@ const CalcBox = () => {
   const handlePocketInit = () => {
     setPocketSubjectList([[], [], [], [], [], [], [], []]);
     setCreditGraph(initCreditGraph);
+    setLoadMapCredit(creditDispatch("*", { type: "INIT_USER" }));
   };
   const handlePocketSubjectList = (pickSubject, selectSemester) => {
     // 이전에 담은적 없는 과목인지 확인
@@ -389,41 +390,27 @@ const CalcBox = () => {
         newPocketSubjectList[selectSemester - 1].push(pickSubject);
         setCreditGraph(newCreditGraph);
         setPocketSubjectList(newPocketSubjectList);
-        handleOnClickPickSubject(newPocketSubjectList, selectSemester);
+        handleOnClickPickSubject(pickSubject, selectSemester);
       }
     }
   };
-  const handleOnClickPickSubject = (loadMapSubjetList, selectSemester) => {
+  const handleOnClickPickSubject = (pickSubject, selectSemester) => {
     // loadMapSubjetList에 대한 검증은 불필요
-    const newLoadMapSubjetList = loadMapSubjetList.flat();
-    for (const subject of newLoadMapSubjetList) {
-      if (subject.id === selectMajor) {
-        if (subject.type === "basic") {
-        } else {
-        }
-      } else if (enableAddMajor && subject.id === selectAddMajor) {
-        if (subject.type === "basic") {
-        } else {
-        }
+    const newLoadMapCredit = loadMapCredit;
+    if (pickSubject.id === selectMajor) {
+      if (pickSubject.type === "basic") {
+        newLoadMapCredit.major[0] += pickSubject.credit;
+      } else {
+        newLoadMapCredit.major[1] = pickSubject.credit;
+      }
+    } else if (enableAddMajor && pickSubject.id === selectAddMajor) {
+      if (pickSubject.type === "basic") {
+        newLoadMapCredit.addMajor[0] = pickSubject.credit;
+      } else {
+        newLoadMapCredit.addMajor[1] = pickSubject.credit;
       }
     }
-    console.log(newLoadMapSubjetList);
-    // const arr = loadMapSubjetList.map((bar) => bar.credit);
-    // // i-로드맵 전공 분류 로직 필요
-    // const sum = arr.reduce((prev, cur) => prev + cur);
-    // console.log(sum);
-    // const newAppendCredit = { ...appendCredit };
-    // newAppendCredit.major = [0, sum];
-    // newAppendCredit.sum = creditDispatch(newAppendCredit, {
-    //   type: "CREDIT_SUM",
-    // });
-    // setAppendCredit(newAppendCredit);
-    // handleOnChangeCredit.onChangeMajor(null, 1);
-    // const tempMajor = sum;
-    // const std = userCredit.major;
-    // const sumApplyBasic = 0;
-    // const sumApplyChoice = applyCredit.major[0];
-    // const newApply = [applyCredit.major[0] + tempMajor < std[0] ? ];
+    setLoadMapCredit(newLoadMapCredit);
   };
   useEffect(() => {
     console.log("------------------");
