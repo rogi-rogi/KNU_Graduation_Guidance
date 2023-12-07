@@ -156,7 +156,6 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
         };
       }
     }
-    console.log(selectAddMajor);
     setMajorType(newMajorType);
     const newSelectCredit = creditDispatch(selectGroup, {
       type: "GET_CREDIT",
@@ -206,7 +205,6 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
       newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
       setGetCredit(newGetCredit);
 
-      // 인정 & 미취득의 합계는 취득의 합계와 동일
       setApplyCredit((prev) => ({
         ...prev,
         subject: newApply,
@@ -215,7 +213,7 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
       setNeedCredit((prev) => ({
         ...prev,
         subject: newNeed,
-        sum: newGetCredit.sum,
+        sum: [userCredit.sum[0] - newGetCredit.sum[0]],
       }));
     },
     //onChangeMajor
@@ -246,7 +244,7 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
       setNeedCredit((prev) => ({
         ...prev,
         major: newNeed,
-        sum: newGetCredit.sum,
+        sum: [userCredit.sum[0] - newGetCredit.sum[0]],
       }));
     },
     //onChangeAddMajor
@@ -279,7 +277,7 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
       setNeedCredit((prev) => ({
         ...prev,
         addMajor: newNeed,
-        sum: newGetCredit.sum,
+        sum: [userCredit.sum[0] - newGetCredit.sum[0]],
       }));
     },
     //onChangeOther
@@ -304,7 +302,7 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
       setNeedCredit((prev) => ({
         ...prev,
         other: newNeed,
-        sum: newGetCredit.sum,
+        sum: [userCredit.sum[0] - newGetCredit.sum[0]],
       }));
     },
     //input
