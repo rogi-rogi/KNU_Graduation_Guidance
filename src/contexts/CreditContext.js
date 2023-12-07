@@ -383,7 +383,7 @@ const initState = [
   // },
 ];
 
-const INIT = initState.filter((credit) => credit.id === "*")[0];
+const INIT = { ...initState.filter((credit) => credit.id === "*")[0] };
 const sum = (arr) => arr.reduce((prev, cur) => prev + cur);
 const creditSum = (credit) => {
   return Number(
@@ -396,12 +396,12 @@ const creditSum = (credit) => {
   );
 };
 const convertCreditToObject = ({ selectCredit, majorType, other = [0] }) => ({
-  subject: selectCredit.subject,
-  major: selectCredit[majorType.major],
+  subject: [...selectCredit.subject],
+  major: [...selectCredit[majorType.major]],
   addMajor:
-    majorType.addMajor === "*" ? [0, 0] : selectCredit[majorType.addMajor],
-  other,
-  sum: selectCredit.sum,
+    majorType.addMajor === "*" ? [0, 0] : [...selectCredit[majorType.addMajor]],
+  other: [other[0]],
+  sum: [...selectCredit.sum],
 });
 
 const CreditContext = createContext({

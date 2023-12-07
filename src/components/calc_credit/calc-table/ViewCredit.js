@@ -1,7 +1,7 @@
 const ViewCredit = ({
   header,
   credit,
-  onChange,
+  handleList,
   majorType = { addMajor: "*" },
   type = "READ",
 }) => {
@@ -21,7 +21,7 @@ const ViewCredit = ({
       <div className="head">{header}</div>
       <SubView
         list={credit.subject.slice(0, 4)}
-        onChange={type === "WRITE" && onChange.onChangeSubject}
+        onChange={handleList && handleList.onChangeSubject}
         type={type}
       />
       <SubView
@@ -33,20 +33,20 @@ const ViewCredit = ({
 
       <SubView
         list={credit.major}
-        onChange={onChange && onChange.onChangeMajor}
+        onChange={handleList && handleList.onChangeMajor}
         type={type}
       />
 
       <SubView
         list={credit.addMajor}
-        onChange={onChange && onChange.onChangeAddMajor}
+        onChange={handleList && handleList.onChangeAddMajor}
         disabled={majorType.addMajor === "*"}
         type={type}
       />
 
       <SubView
         list={[credit.other]}
-        onChange={onChange && onChange.onChangeOther}
+        onChange={handleList && handleList.onChangeOther}
         type={type}
       />
       <SubView
@@ -70,18 +70,19 @@ const SubView = ({
   return (
     <>
       {type === "READ" &&
-        list.map((el) => (
+        list.map((credit) => (
           <div className="sum" style={addStyle}>
-            {el}
+            {credit === 0 ? "" : credit}
           </div>
         ))}
       {type === "WRITE" &&
-        list.map((el, idx) => (
+        list.map((credit, idx) => (
           <input
-            value={el}
+            id={`${idx}-input`}
+            value={credit === 0 ? "" : credit}
             disabled={disabled}
-            onChange={(e) => onChange(e, idx)}
-            maxLength={3}
+            onChange={onChange}
+            maxLength={2}
           />
         ))}
     </>
