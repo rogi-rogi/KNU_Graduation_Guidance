@@ -3,7 +3,7 @@ import GroupContext from "../../../contexts/GroupContext";
 import ViewHeader from "./ViewHeader";
 import ViewCredit from "./ViewCredit";
 
-const CalcTable = ({ creditInfo, onChange }) => {
+const CalcTable = ({ creditInfo, handleCalcTable }) => {
   const {
     userCredit,
     getCredit,
@@ -22,7 +22,7 @@ const CalcTable = ({ creditInfo, onChange }) => {
         <ViewCredit
           header={"취득"}
           credit={getCredit}
-          onChange={onChange}
+          handleList={handleCalcTable}
           majorType={majorType}
           type={"WRITE"}
         />

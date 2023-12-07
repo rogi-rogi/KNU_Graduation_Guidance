@@ -69,9 +69,8 @@ const CalcBox = () => {
     [],
     [],
   ]);
-
   // 1. 입학연도 : 드롭다운
-  const handleOnChangeSelectYear = (e) => {
+  const filterSelectYear = (e) => {
     setSelectYear(e.target.value);
     if (e.target.value !== selectYear) {
       setSelectGroup("*");
@@ -80,45 +79,42 @@ const CalcBox = () => {
       setSelectAddMajor("*");
     }
   };
-
   // 2. 소속 : 드롭다운
-  const handleOnChangeSelectUniver = (e) => {
+  const filterSelectUniver = (e) => {
     setSelectUniver(e.target.value);
     if (e.target.value !== selectUniver) {
       setSelectGroup("*");
       setSelectMajor("*");
     }
   };
-
   // 3. 학부 : 드롭다운
-  const handleOnChangeSelectGroup = (e) => {
+  const filterSelectGroup = (e) => {
     setSelectGroup(e.target.value);
     if (e.target.value !== selectGroup) {
       setSelectMajor("*");
     }
   };
-
   // 4. 학과 : 드롭다운
-  const handleOnChangeSelectMajor = (e) => {
+  const filterSelectMajor = (e) => {
     setSelectMajor(e.target.value);
   };
   // 심화과정(1전공) : 체크박스
-  const handleOnClickMajorType = (e) => {
+  const filterMajorType = (e) => {
     setMajorType((prev) => ({
       ...prev,
       major: e.target.checked ? "advanced" : "major",
     }));
   };
   // 전공추가 : 체크박스
-  const handleOnClickAddMajorView = (e) => {
+  const filterAddMajorView = (e) => {
     setEnableAddMajor(e.target.checked);
   };
   // 부전공 : 체크박스
-  const handleOnClickEnabledMinor = (e) => {
+  const filterEnabledMinor = (e) => {
     setEnabledMinor(!enabledMinor);
   };
   // 5. 소속(추가전공) : 드롭다운`
-  const handleOnChangeSelectAddUniver = (e) => {
+  const filterSelectAddUniver = (e) => {
     setSelectAddUniver(e.target.value);
     if (e.target.value !== selectAddUniver) {
       setSelectAddGroup("*");
@@ -126,19 +122,18 @@ const CalcBox = () => {
     }
   };
   // 6. 학부(추가전공) : 드롭다운
-  const handleOnChangeSelectAddGroup = (e) => {
+  const filterSelectAddGroup = (e) => {
     setSelectAddGroup(e.target.value);
     if (e.target.value !== selectAddMajor) {
       setSelectAddMajor("*");
     }
   };
   // 7. 학과(추가전공) : 드롭다운
-  const handleOnChangeSelectAddMajor = (e) => {
+  const filterSelectAddMajor = (e) => {
     setSelectAddMajor(e.target.value);
   };
-
   // 적용 : 버튼
-  const handleOnClickApplyBtn = () => {
+  const filterApplyBtn = () => {
     if (selectYear === "*") return alert(`'${groupState["year"].header}' 누락`);
     else if (selectUniver === "*")
       return alert(`'${groupState["univer"].header}' 누락`);
@@ -154,7 +149,6 @@ const CalcBox = () => {
       else if (selectAddUniver === "*")
         return alert(`'${groupState["add_major"].header}' 누락`);
     }
-
     let newMajorType = majorType;
     if (!enableAddMajor) {
       // disable addMajor
@@ -185,18 +179,21 @@ const CalcBox = () => {
       )
     );
   };
-
-  const handleOnChangeCredit = {
-    onChangeSubject: (e, idx) => {
-      const newGet = handleOnChangeCredit.input(getCredit.subject, e, idx);
-      if (newGet === null) {
-        return;
-      }
+  const handleCalcTable = {
+    //onChangeSubject
+    onChangeSubject: (input) => {
+      const newGet = handleCalcTable.getNewInputCredit(
+        input,
+        getCredit.subject
+      );
+      if (newGet === null) return;
+      // 교양과목 합 계산
       newGet[4] = creditDispatch(newGet.slice(0, 4), {
         type: "ARRAY_SUM",
       });
-      // apply
-      const std = userCredit.subject;
+
+      // 인정-교양 계산
+      const std = [...userCredit.subject];
       const newApply = [
         newGet[0] > std[0] ? std[0] : newGet[0],
         newGet[1] +
@@ -205,19 +202,20 @@ const CalcBox = () => {
           (newGet[3] > std[3] ? newGet[3] - std[3] : 0),
         newGet[2] > std[2] ? std[2] : newGet[2],
         newGet[3] > std[3] ? std[3] : newGet[3],
-        newGet[4],
+        newGet[4], // 취득 합계와 동일
       ];
-      // need
-      const newNeed = std.map((credit, i) => {
-        const newCredit = credit - newApply[i];
-        return newCredit > 0 ? newCredit : 0;
-      });
+      // 미취득-교양 계산
+      const newNeed = std.map((credit, i) =>
+        newApply[i] > credit ? 0 : credit - newApply[i]
+      );
 
       // update
       const newGetCredit = { ...getCredit, subject: newGet };
+      // 교양-합계 업데이트 및 적용
       newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
       setGetCredit(newGetCredit);
 
+      // 인정 & 미취득의 합계는 취득의 합계와 동일
       setApplyCredit((prev) => ({
         ...prev,
         subject: newApply,
@@ -229,24 +227,21 @@ const CalcBox = () => {
         sum: newGetCredit.sum,
       }));
     },
+    //onChangeMajor
+    onChangeMajor: (input) => {
+      const newGet = handleCalcTable.getNewInputCredit(input, getCredit.major);
+      if (newGet === null) return;
 
-    onChangeMajor: (e, idx) => {
-      const newGet = handleOnChangeCredit.input(getCredit.major, e, idx);
-      if (newGet === null) {
-        return;
-      }
       // apply
-      const std = userCredit.major;
+      const std = [...userCredit.major];
       const newApply =
-        newGet[0] < std[0]
-          ? [newGet[0], newGet[1]]
-          : [std[0], newGet[1] + (newGet[0] - std[0])];
-
+        newGet[0] > std[0]
+          ? [std[0], newGet[1] + (newGet[0] - std[0])]
+          : [newGet[0], newGet[1]];
       // need
-      const newNeed = std.map((credit, i) => {
-        const newCredit = credit - newApply[i];
-        return newCredit > 0 ? newCredit : 0;
-      });
+      const newNeed = std.map((credit, i) =>
+        newApply[i] > credit ? 0 : credit - newApply[i]
+      );
       // update
       const newGetCredit = { ...getCredit, major: newGet };
       newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
@@ -263,22 +258,23 @@ const CalcBox = () => {
         sum: newGetCredit.sum,
       }));
     },
-    onChangeAddMajor: (e, idx) => {
-      const newGet = handleOnChangeCredit.input(getCredit.addMajor, e, idx);
-      if (newGet === null) {
-        return;
-      }
+    //onChangeAddMajor
+    onChangeAddMajor: (input) => {
+      const newGet = handleCalcTable.getNewInputCredit(
+        input,
+        getCredit.addMajor
+      );
+      if (newGet === null) return;
       // apply
-      const std = userCredit.addMajor;
+      const std = [...userCredit.addMajor];
       const newApply =
         newGet[0] < std[0]
           ? [newGet[0], newGet[1]]
           : [std[0], newGet[1] + (newGet[0] - std[0])];
       // need
-      const newNeed = std.map((credit, i) => {
-        const newCredit = credit - newApply[i];
-        return newCredit > 0 ? newCredit : 0;
-      });
+      const newNeed = std.map((credit, i) =>
+        newApply[i] > credit ? 0 : credit - newApply[i]
+      );
       // update
       const newGetCredit = { ...getCredit, addMajor: newGet };
       newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
@@ -295,18 +291,15 @@ const CalcBox = () => {
         sum: newGetCredit.sum,
       }));
     },
-    onChangeOther: (e, idx) => {
-      let value = handleOnChangeCredit.input(e);
-      if (value === " ") return;
-      value = Number(value);
-      // get
-      const newGet = getCredit.other;
-      newGet[idx] = value;
+    //onChangeOther
+    onChangeOther: (input) => {
+      const newGet = handleCalcTable.getNewInputCredit(input, getCredit.other);
+      if (newGet === null) return;
       // apply
-      const std = userCredit.other;
-      const newApply = [newGet[0] < std ? newGet[0] : newGet[0] - std];
+      const std = [...userCredit.other];
+      const newApply = [newGet[0] > std ? newGet[0] - std : newGet[0]];
       // need
-      const newNeed = [newApply[0] < std ? newApply[0] - std : 0];
+      const newNeed = [newApply[0] > std ? 0 : newApply[0] - std];
       // update
       const newGetCredit = { ...getCredit, other: newGet };
       newGetCredit.sum = [creditDispatch(newGetCredit, { type: "CREDIT_SUM" })];
@@ -323,34 +316,30 @@ const CalcBox = () => {
         sum: newGetCredit.sum,
       }));
     },
-    input: (list, e = null, idx = -1) => {
-      if (e && idx !== -1) {
-        let value = e.target.value.replace(/[^0-9]/g, " ");
-        if (value === " ") return null;
-        value = Number(value);
-        // get
-        const newList = list;
-        newList[idx] = value;
-        return newList;
-      }
-      return list;
+    //input
+    getNewInputCredit: (input, creditList) => {
+      const inputValue = input.target.value.replace(/[^0-9]/g, " ");
+      if (inputValue === " ") return null;
+      const newGetCreditList = [...creditList];
+      newGetCreditList[input.target.id.split("-")[0]] = Number(inputValue);
+      return newGetCreditList;
     },
   };
-
   // 최적화 작업 필요
   const handle = {
-    handleOnChangeSelectYear,
-    handleOnChangeSelectUniver,
-    handleOnChangeSelectGroup,
-    handleOnChangeSelectMajor,
-    handleOnClickMajorType,
-    handleOnClickAddMajorView,
-    handleOnClickEnabledMinor,
-    handleOnChangeSelectAddUniver,
-    handleOnChangeSelectAddGroup,
-    handleOnChangeSelectAddMajor,
-    handleOnClickApplyBtn,
+    filterSelectYear,
+    filterSelectUniver,
+    filterSelectGroup,
+    filterSelectMajor,
+    filterMajorType,
+    filterAddMajorView,
+    filterEnabledMinor,
+    filterSelectAddUniver,
+    filterSelectAddGroup,
+    filterSelectAddMajor,
+    filterApplyBtn,
   };
+
   const majorInfo = {
     selectYear,
     selectUniver,
@@ -362,9 +351,13 @@ const CalcBox = () => {
     selectAddGroup,
     selectAddMajor,
   };
+
   const handlePocketInit = () => {
     setPocketSubjectList([[], [], [], [], [], [], [], []]);
     setCreditGraph(initCreditGraph);
+    console.log("-----------------");
+    console.log(creditDispatch("*", { type: "INIT_USER" }));
+    setLoadMapCredit(creditDispatch("*", { type: "INIT_USER" }));
   };
   const handlePocketSubjectList = (pickSubject, selectSemester) => {
     // 이전에 담은적 없는 과목인지 확인
@@ -389,47 +382,32 @@ const CalcBox = () => {
         newPocketSubjectList[selectSemester - 1].push(pickSubject);
         setCreditGraph(newCreditGraph);
         setPocketSubjectList(newPocketSubjectList);
-        handleOnClickPickSubject(newPocketSubjectList, selectSemester);
+        handleOnClickPickSubject(pickSubject, selectSemester);
       }
     }
   };
-  const handleOnClickPickSubject = (loadMapSubjetList, selectSemester) => {
+  const handleOnClickPickSubject = (pickSubject, selectSemester) => {
     // loadMapSubjetList에 대한 검증은 불필요
-    const newLoadMapSubjetList = loadMapSubjetList.flat();
-    for (const subject of newLoadMapSubjetList) {
-      if (subject.id === selectMajor) {
-        if (subject.type === "basic") {
-        } else {
-        }
-      } else if (enableAddMajor && subject.id === selectAddMajor) {
-        if (subject.type === "basic") {
-        } else {
-        }
+    const newLoadMapCredit = loadMapCredit;
+    if (pickSubject.id === selectMajor) {
+      if (pickSubject.type === "basic") {
+        newLoadMapCredit.major[0] += pickSubject.credit;
+      } else if (pickSubject.type === "choice") {
+        newLoadMapCredit.major[1] += pickSubject.credit;
       }
+    } else if (pickSubject.id === selectAddMajor) {
+      if (pickSubject.type === "basic") {
+        newLoadMapCredit.addMajor[0] += pickSubject.credit;
+      } else if (pickSubject.type === "choice") {
+        newLoadMapCredit.addMajor[1] += pickSubject.credit;
+      }
+    } else {
+      newLoadMapCredit.other[0] += pickSubject.credit;
     }
-    console.log(newLoadMapSubjetList);
-    // const arr = loadMapSubjetList.map((bar) => bar.credit);
-    // // i-로드맵 전공 분류 로직 필요
-    // const sum = arr.reduce((prev, cur) => prev + cur);
-    // console.log(sum);
-    // const newAppendCredit = { ...appendCredit };
-    // newAppendCredit.major = [0, sum];
-    // newAppendCredit.sum = creditDispatch(newAppendCredit, {
-    //   type: "CREDIT_SUM",
-    // });
-    // setAppendCredit(newAppendCredit);
-    // handleOnChangeCredit.onChangeMajor(null, 1);
-    // const tempMajor = sum;
-    // const std = userCredit.major;
-    // const sumApplyBasic = 0;
-    // const sumApplyChoice = applyCredit.major[0];
-    // const newApply = [applyCredit.major[0] + tempMajor < std[0] ? ];
+    setLoadMapCredit(newLoadMapCredit);
   };
   useEffect(() => {
-    console.log("------------------");
-    console.log(selectGroup);
-    console.log(selectMajor);
-    console.log("------------------");
+    //
   });
   const creditInfo = {
     userCredit,
@@ -443,15 +421,14 @@ const CalcBox = () => {
     <>
       <div className="calc-slide-wrapper">
         <MajorCalcOptionBox info={majorInfo} handle={handle} />
-        <CalcTable creditInfo={creditInfo} onChange={handleOnChangeCredit} />
+        <CalcTable creditInfo={creditInfo} handleCalcTable={handleCalcTable} />
       </div>
       <div className="loadmap-slide-wrapper">
         <LoadMapWrapper
           majorInfo={majorInfo}
           creditGraph={creditGraph}
-          pocketSubjectList={pocketSubjectList}
-          handlePocketSubjectList={handlePocketSubjectList}
           handlePocketInit={handlePocketInit}
+          handlePocketSubjectList={handlePocketSubjectList}
         />
       </div>
     </>

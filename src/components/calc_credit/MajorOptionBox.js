@@ -10,26 +10,26 @@ const MajorCalcOptionBox = ({ info, handle }) => {
         <GroupListBox
           header={groupState["year"].header}
           list={groupState["year"].list["*"]}
-          onChange={handle.handleOnChangeSelectYear}
+          onChange={handle.filterSelectYear}
           selected={info.selectYear}
         />
 
         <GroupListBox
           header={groupState["univer"].header}
           list={groupState["univer"].list[info.selectYear]}
-          onChange={handle.handleOnChangeSelectUniver}
+          onChange={handle.filterSelectUniver}
           selected={info.selectUniver}
         />
         <GroupListBox
           header={groupState["group"].header}
           list={groupState["group"].list[info.selectUniver]}
-          onChange={handle.handleOnChangeSelectGroup}
+          onChange={handle.filterSelectGroup}
           selected={info.selectGroup}
         />
         <GroupListBox
           header={groupState["major"].header}
           list={groupState["major"].list[info.selectGroup]}
-          onChange={handle.handleOnChangeSelectMajor}
+          onChange={handle.filterSelectMajor}
           selected={info.selectMajor}
         />
       </div>
@@ -40,7 +40,7 @@ const MajorCalcOptionBox = ({ info, handle }) => {
             <input
               type="checkbox"
               value="advanced"
-              onChange={handle.handleOnClickMajorType}
+              onChange={handle.filterMajorType}
               defaultChecked={info.majorType.major === "advanced"}
             />
           </span>
@@ -49,7 +49,7 @@ const MajorCalcOptionBox = ({ info, handle }) => {
             <input
               type="checkbox"
               value="*"
-              onClick={handle.handleOnClickAddMajorView}
+              onClick={handle.filterAddMajorView}
             />
           </span>
         </div>
@@ -60,7 +60,7 @@ const MajorCalcOptionBox = ({ info, handle }) => {
               <input
                 type="checkbox"
                 value="minor"
-                onClick={handle.handleOnClickEnabledMinor}
+                onClick={handle.filterEnabledMinor}
                 disabled={!info.enableAddMajor}
               />
             </span>
@@ -69,28 +69,28 @@ const MajorCalcOptionBox = ({ info, handle }) => {
             <GroupListBox
               header={groupState["add_univer"].header}
               list={groupState["univer"].list[info.selectYear]}
-              onChange={handle.handleOnChangeSelectAddUniver}
+              onChange={handle.filterSelectAddUniver}
               selected={info.selectAddUniver}
               disabled={!info.enableAddMajor}
             />
             <GroupListBox
               header={groupState["add_group"].header}
               list={groupState["group"].list[info.selectAddUniver]}
-              onChange={handle.handleOnChangeSelectAddGroup}
+              onChange={handle.filterSelectAddGroup}
               selected={info.selectAddGroup}
               disabled={!info.enableAddMajor}
             />
             <GroupListBox
               header={groupState["add_major"].header}
               list={groupState["major"].list[info.selectAddGroup]}
-              onChange={handle.handleOnChangeSelectAddMajor}
+              onChange={handle.filterSelectAddMajor}
               selected={info.selectAddMajor}
               disabled={!info.enableAddMajor}
             />
           </div>
         </div>
       </div>
-      <button className="apply-btn" onClick={handle.handleOnClickApplyBtn}>
+      <button className="apply-btn" onClick={handle.filterApplyBtn}>
         적용
       </button>
     </div>

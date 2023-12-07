@@ -4,8 +4,8 @@ import SubjectContext from "../../../contexts/SubjectContext";
 const LoadMapOptionBar = ({
   majorInfo,
   label,
-  handlePocketSubjectList,
   handlePocketInit,
+  handlePocketSubjectList,
 }) => {
   const { subjectState } = useContext(SubjectContext);
   const [viewSubjectList, setViewSubjectList] = useState([]);
