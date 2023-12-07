@@ -1,4 +1,4 @@
-const ViewHeader = ({ headerList }) => {
+const CalcTableHeader = ({ headerList }) => {
   return (
     <>
       {headerList.map((title) => (
@@ -8,4 +8,4 @@ const ViewHeader = ({ headerList }) => {
   );
 };
 
-export default ViewHeader;
+export default CalcTableHeader;

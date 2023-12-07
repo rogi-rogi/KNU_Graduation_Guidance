@@ -1,32 +1,32 @@
 import { useContext } from "react";
-import GroupListBox from "./GroupListBox";
-import GroupContext from "../../contexts/GroupContext";
+import GroupContext from "../../../contexts/GroupContext";
+import GroupList from "./GroupList";
 
-const MajorCalcOptionBox = ({ info, handle }) => {
+const CalcFilter = ({ info, handle }) => {
   const { groupState } = useContext(GroupContext);
   return (
     <div className="option-box-wrapper">
       <div className="list-box-wrapper">
-        <GroupListBox
+        <GroupList
           header={groupState["year"].header}
           list={groupState["year"].list["*"]}
           onChange={handle.filterSelectYear}
           selected={info.selectYear}
         />
 
-        <GroupListBox
+        <GroupList
           header={groupState["univer"].header}
           list={groupState["univer"].list[info.selectYear]}
           onChange={handle.filterSelectUniver}
           selected={info.selectUniver}
         />
-        <GroupListBox
+        <GroupList
           header={groupState["group"].header}
           list={groupState["group"].list[info.selectUniver]}
           onChange={handle.filterSelectGroup}
           selected={info.selectGroup}
         />
-        <GroupListBox
+        <GroupList
           header={groupState["major"].header}
           list={groupState["major"].list[info.selectGroup]}
           onChange={handle.filterSelectMajor}
@@ -66,21 +66,21 @@ const MajorCalcOptionBox = ({ info, handle }) => {
             </span>
           </div>
           <div className="option-box-wrapper list-box-wrapper">
-            <GroupListBox
+            <GroupList
               header={groupState["add_univer"].header}
               list={groupState["univer"].list[info.selectYear]}
               onChange={handle.filterSelectAddUniver}
               selected={info.selectAddUniver}
               disabled={!info.enableAddMajor}
             />
-            <GroupListBox
+            <GroupList
               header={groupState["add_group"].header}
               list={groupState["group"].list[info.selectAddUniver]}
               onChange={handle.filterSelectAddGroup}
               selected={info.selectAddGroup}
               disabled={!info.enableAddMajor}
             />
-            <GroupListBox
+            <GroupList
               header={groupState["add_major"].header}
               list={groupState["major"].list[info.selectAddGroup]}
               onChange={handle.filterSelectAddMajor}
@@ -96,4 +96,4 @@ const MajorCalcOptionBox = ({ info, handle }) => {
     </div>
   );
 };
-export default MajorCalcOptionBox;
+export default CalcFilter;

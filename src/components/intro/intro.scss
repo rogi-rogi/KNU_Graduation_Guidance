@@ -78,16 +78,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: $WRAPPER_COLOR;
-  height: 700px;
+  height: 1000px;
   .slide {
     display: flex;
-    width: min-content;
     gap: 80px;
     .title,
-    .image {
+    .image1,
+    .image2 {
       opacity: 0;
-      height: 300px;
+      height: 320px;
       margin-top: 200px;
       border-radius: 10px;
       // transition: margin-top 1.8s, opacity 1.5s ease-in-out;
@@ -127,14 +128,22 @@
         box-shadow: $SUB_BOX_SHADOW;
       }
     }
-
-    .image {
+    .image1,
+    .image2 {
       width: 900px;
-      height: 300px;
-      background: url("/assets/images/calc-example1.png");
+      height: 320px;
       background-size: contain;
       background-repeat: no-repeat;
+
       transition: margin-top 1.8s, opacity 1.5s ease-in-out;
+    }
+    .image1 {
+      background: url("/assets/images/example1.png");
+      background-repeat: no-repeat;
+    }
+    .image2 {
+      background: url("/assets/images/example2.png");
+      background-repeat: no-repeat;
     }
   }
 }

@@ -1,4 +1,4 @@
-const GroupListBox = ({
+const GroupList = ({
   header,
   list,
   onChange,
@@ -21,4 +21,4 @@ const GroupListBox = ({
   );
 };
 
-export default GroupListBox;
+export default GroupList;

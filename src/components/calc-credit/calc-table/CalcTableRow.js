@@ -1,4 +1,4 @@
-const ViewCredit = ({
+const CalcTableRow = ({
   header,
   credit,
   handleList,
@@ -45,12 +45,12 @@ const ViewCredit = ({
       />
 
       <SubView
-        list={[credit.other]}
+        list={credit.other}
         onChange={handleList && handleList.onChangeOther}
         type={type}
       />
       <SubView
-        list={[credit.sum]}
+        list={credit.sum}
         addStyle={divStyle}
         disabled={true}
         type={type}
@@ -88,4 +88,4 @@ const SubView = ({
     </>
   );
 };
-export default ViewCredit;
+export default CalcTableRow;

@@ -7,14 +7,14 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  height: 450px;
 
   .option-box-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    max-height: 350x;
-    min-height: min-content;
+    height: min-content;
     padding: 10px 10px;
     gap: 10px;
     background-color: $WRAPPER_COLOR;
@@ -23,6 +23,7 @@
     border-radius: 10px;
     box-shadow: $SUB_BOX_SHADOW;
     box-sizing: border-box;
+
     .list-box-wrapper {
       // width: 100px;
       display: flex;
@@ -174,9 +175,21 @@
 .loadmap-slide-wrapper {
   display: flex;
   flex-direction: column;
+  height: 800px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   background-color: $WRAPPER_COLOR;
+  .share-wrapper {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: $WRAPPER_COLOR;
+    box-sizing: content-box;
+    box-shadow: $SUB_BOX_SHADOW;
+    border-color: $MAIN_COLOR;
+    border-radius: 5em;
+  }
   .graph-wrapper {
     display: flex;
     align-items: center;

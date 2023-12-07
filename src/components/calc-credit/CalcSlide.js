@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import CreditContext from "../../contexts/CreditContext";
-import MajorCalcOptionBox from "./MajorOptionBox";
 import GroupContext from "../../contexts/GroupContext";
 import CalcTable from "./calc-table/CalcTable";
 import LoadMapWrapper from "./load-map/LoadMapWrapper";
+import CalcFilter from "./calc-filter/CalcFilter";
 
-const CalcBox = () => {
+const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
   const { groupState } = useContext(GroupContext);
   const { creditDispatch } = useContext(CreditContext);
   const [selectYear, setSelectYear] = useState("*");
@@ -59,16 +59,6 @@ const CalcBox = () => {
     { label: "4-2", basicCredit: 0, choiceCredit: 0 },
   ];
   const [creditGraph, setCreditGraph] = useState([...initCreditGraph]);
-  const [pocketSubjectList, setPocketSubjectList] = useState([
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-  ]);
   // 1. 입학연도 : 드롭다운
   const filterSelectYear = (e) => {
     setSelectYear(e.target.value);
@@ -420,10 +410,13 @@ const CalcBox = () => {
   return (
     <>
       <div className="calc-slide-wrapper">
-        <MajorCalcOptionBox info={majorInfo} handle={handle} />
+        <CalcFilter info={majorInfo} handle={handle} />
         <CalcTable creditInfo={creditInfo} handleCalcTable={handleCalcTable} />
       </div>
       <div className="loadmap-slide-wrapper">
+        <button className="share-wrapper" onClick={() => onClick(2)}>
+          로드맵 공유
+        </button>
         <LoadMapWrapper
           majorInfo={majorInfo}
           creditGraph={creditGraph}
@@ -435,4 +428,4 @@ const CalcBox = () => {
   );
 };
 
-export default CalcBox;
+export default CalcSlide;

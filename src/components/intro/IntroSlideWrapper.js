@@ -1,4 +1,4 @@
-import CalcSlide from "./CalcSlide";
+import IntroCalcSlide from "./IntroCalcSlide";
 import { useEffect, useRef, useState } from "react";
 
 const IntroSlideWrapper = ({ onClick }) => {
@@ -8,8 +8,8 @@ const IntroSlideWrapper = ({ onClick }) => {
     const scrollPosition = window.scrollY + window.innerHeight;
     const elementPosition = wrapperRef.current.offsetTop;
     setIsVisible([
-      scrollPosition > elementPosition + 200,
-      scrollPosition > elementPosition + 800,
+      scrollPosition > elementPosition + 400,
+      scrollPosition > elementPosition + 700,
     ]);
   };
   useEffect(() => {
@@ -21,7 +21,7 @@ const IntroSlideWrapper = ({ onClick }) => {
   return (
     <div className="slide-wrapper">
       <div className="header">저희가 만든 기능을 소개합니다.</div>
-      <CalcSlide
+      <IntroCalcSlide
         isVisible={isVisible}
         wrapperRef={wrapperRef}
         onClick={() => onClick(1)}
