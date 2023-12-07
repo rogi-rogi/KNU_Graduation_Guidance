@@ -14,7 +14,7 @@
 | :-----------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/95115004?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/8115130?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/151488428?v=4" width="150px"/> |
 |                   [@rogi-rogi](https://github.com/rogi-rogi)                    |                     [@geoni-ara](https://github.com/geoni)                     |                  [@seungjuncha](https://github.com/seungjuncha)                  |
-|                  <p style="white-space:nowrap">기획, 개발</p>                   |                                     데이터수집                                     |                                      디자인                                      |
+|                  <p style="white-space:nowrap">기획, 개발</p>                   |                                   데이터수집                                   |                                      디자인                                      |
 
 <hr/><br>
 
@@ -78,6 +78,7 @@
 ![Styled_Components](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
 
 ### 📦 Backend
+
 ![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white)
 
 ### 🎨 UI/UX
@@ -123,43 +124,74 @@ yarn start
 📦KNU_Graduation_Guidance
  ┣ 📂node_modules
  ┣ 📂public
- ┃ ┣ 📂assets
- ┃ ┃ ┗ 📂images
- ┃ ┃ ┃ ┗ 📜KNU_MAIN.jpg
  ┃ ┣ 📜index.html
  ┃ ┗ 📜robots.txt
  ┣ 📂src
+ ┃ ┣ 📂assets
+ ┃ ┃ ┣ 📂images
+ ┃ ┃ ┃ ┣ 📜example1.png
+ ┃ ┃ ┃ ┣ 📜example2.png
+ ┃ ┃ ┃ ┗ 📜KNU_MAIN.jpg
+ ┃ ┃ ┗ 📂temp
+ ┃ ┃ ┃ ┣ 📂개설과목
+ ┃ ┃ ┃ ┃ ┣ 📜가상현실전공.xls
+ ┃ ┃ ┃ ┃ ┣ 📜개설 과목 조사.xlsx
+ ┃ ┃ ┃ ┃ ┣ 📜소프트웨어전공.xls
+ ┃ ┃ ┃ ┃ ┗ 📜전자공학전공.xls
+ ┃ ┃ ┃ ┣ 📜졸업이수학점(변경)_2017-2020학년도.pdf
+ ┃ ┃ ┃ ┣ 📜졸업이수학점(변경)_2021학년도 이후(2023).pdf
+ ┃ ┃ ┃ ┗ 📜학과 분류 조사.xlsx
  ┃ ┣ 📂components
- ┃ ┃ ┣ 📂calc_graduation
- ┃ ┃ ┃ ┣ 📜CalcBox.js
- ┃ ┃ ┃ ┣ 📜CalcGraph.js
- ┃ ┃ ┃ ┣ 📜GroupListBox.js
- ┃ ┃ ┃ ┣ 📜MajorCalcOptionBox.js
- ┃ ┃ ┃ ┗ 📜ViewCredit.js
+ ┃ ┃ ┣ 📂board
+ ┃ ┃ ┃ ┣ 📜board.scss
+ ┃ ┃ ┃ ┣ 📜BordListPage.js
+ ┃ ┃ ┃ ┣ 📜ReadPage.js
+ ┃ ┃ ┃ ┗ 📜WritePage.js
+ ┃ ┃ ┣ 📂calc-credit
+ ┃ ┃ ┃ ┣ 📂calc-filter
+ ┃ ┃ ┃ ┃ ┣ 📜CalcFilter.js
+ ┃ ┃ ┃ ┃ ┗ 📜GroupList.js
+ ┃ ┃ ┃ ┣ 📂calc-table
+ ┃ ┃ ┃ ┃ ┣ 📜CalcTable.js
+ ┃ ┃ ┃ ┃ ┣ 📜CalcTableHeader.js
+ ┃ ┃ ┃ ┃ ┗ 📜CalcTableRow.js
+ ┃ ┃ ┃ ┣ 📂load-map
+ ┃ ┃ ┃ ┃ ┣ 📜CalcGraph.js
+ ┃ ┃ ┃ ┃ ┣ 📜LoadMapOptionBar.js
+ ┃ ┃ ┃ ┃ ┗ 📜LoadMapWrapper.js
+ ┃ ┃ ┃ ┣ 📜calc.scss
+ ┃ ┃ ┃ ┗ 📜CalcSlide.js
  ┃ ┃ ┣ 📂intro
+ ┃ ┃ ┃ ┣ 📜BulletinSlide.js
  ┃ ┃ ┃ ┣ 📜DevSlide.js
+ ┃ ┃ ┃ ┣ 📜intro.scss
+ ┃ ┃ ┃ ┣ 📜IntroCalcSlide.js
  ┃ ┃ ┃ ┣ 📜IntroCard.js
- ┃ ┃ ┃ ┗ 📜IntroHeader.js
- ┃ ┃ ┗ 📂menu_bar
+ ┃ ┃ ┃ ┣ 📜IntroCradWrapper.js
+ ┃ ┃ ┃ ┣ 📜IntroHeader.js
+ ┃ ┃ ┃ ┗ 📜IntroSlideWrapper.js
+ ┃ ┃ ┗ 📂menu-bar
  ┃ ┃ ┃ ┣ 📜MenuBar.js
  ┃ ┃ ┃ ┣ 📜MenuBar.scss
  ┃ ┃ ┃ ┗ 📜MenuBtn.js
  ┃ ┣ 📂contexts
  ┃ ┃ ┣ 📜CreditContext.js
- ┃ ┃ ┗ 📜GroupContext.js
+ ┃ ┃ ┣ 📜GroupContext.js
+ ┃ ┃ ┗ 📜SubjectContext.js
  ┃ ┣ 📂pages
- ┃ ┃ ┣ 📜Board.js
- ┃ ┃ ┣ 📜CalcCredit.js
+ ┃ ┃ ┣ 📜BoardPage.js
+ ┃ ┃ ┣ 📜CalcPage.js
  ┃ ┃ ┣ 📜Home.js
- ┃ ┃ ┣ 📜Intro.js
+ ┃ ┃ ┣ 📜IntroPage.js
  ┃ ┃ ┣ 📜LoadPage.js
  ┃ ┃ ┣ 📜Page.scss
  ┃ ┃ ┗ 📜TestPage.js
- ┃ ┣ 📜App.css
  ┃ ┣ 📜App.js
+ ┃ ┣ 📜global.scss
  ┃ ┣ 📜index.css
  ┃ ┗ 📜index.js
  ┣ 📜.gitignore
+ ┣ 📜database.json
  ┣ 📜package.json
  ┣ 📜README.md
  ┗ 📜yarn.lock
