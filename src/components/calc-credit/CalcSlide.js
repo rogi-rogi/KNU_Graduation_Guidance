@@ -4,6 +4,7 @@ import GroupContext from "../../contexts/GroupContext";
 import CalcTable from "./calc-table/CalcTable";
 import LoadMapWrapper from "./load-map/LoadMapWrapper";
 import CalcFilter from "./calc-filter/CalcFilter";
+import axios from "axios";
 
 const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
   const { groupState } = useContext(GroupContext);
@@ -375,7 +376,7 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
       }
     }
   };
-  const handleOnClickPickSubject = (pickSubject, selectSemester) => {
+  const handleOnClickPickSubject = (pickSubject) => {
     // loadMapSubjetList에 대한 검증은 불필요
     const newLoadMapCredit = loadMapCredit;
     if (pickSubject.id === selectMajor) {
@@ -406,6 +407,10 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
     loadMapCredit,
     majorType,
   };
+  const shareLoadMapCredit = async () => {
+    await axios.patch(`http://localhost:3001/share`, pocketSubjectList);
+    onClick(2);
+  };
   return (
     <>
       <div className="calc-slide-wrapper">
@@ -413,7 +418,7 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
         <CalcTable creditInfo={creditInfo} handleCalcTable={handleCalcTable} />
       </div>
       <div className="loadmap-slide-wrapper">
-        <button className="share-wrapper" onClick={() => onClick(2)}>
+        <button className="share-wrapper" onClick={shareLoadMapCredit}>
           로드맵 공유
         </button>
         <LoadMapWrapper

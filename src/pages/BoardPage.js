@@ -10,25 +10,25 @@ const BoardPage = () => {
   const [page, setPage] = useState("board");
   const [selectTodo, setSelectTodo] = useState(null);
   const [server, setServer] = useState([]);
-  useEffect(()=>{
+  useEffect(() => {
     const readServer = async () => {
       const res = await axios.get("http://localhost:3001/board");
       setServer(res.data);
     };
     readServer();
-  });
+  }, []);
   const handleOnClickSelectTodo = async (todo) => {
-    try{
-      await axios.put(`http://localhost:3001/board/${todo.id}`,{
+    try {
+      await axios.put(`http://localhost:3001/board/${todo.id}`, {
         id: todo.id,
         title: todo.title,
         contents: todo.contents,
         date: todo.date,
-        show: todo.show+1,
+        show: todo.show + 1,
       });
       setSelectTodo(todo);
       changePageForRead();
-    }catch(error){
+    } catch (error) {
       console.error("서버에 데이터를 업데이트 하는 중 오류 발생");
     }
   };
@@ -42,7 +42,7 @@ const BoardPage = () => {
     setPage("contents");
   };
   return (
-    <div className="page" >
+    <div className="page">
       <div className="page-content-wrapper">
         <div className="page-content">
           {page === "board" && (
@@ -56,13 +56,13 @@ const BoardPage = () => {
             <WritePage
               changePageForBoardList={changePageForBoardList}
               server={server}
-              setServer = {setServer}
+              setServer={setServer}
             />
           )}
           {page === "contents" && (
             <ReadPage
-              server = {server}
-              setServer = {setServer}
+              server={server}
+              setServer={setServer}
               changePageForBoardList={changePageForBoardList}
               selectTodo={selectTodo}
             />

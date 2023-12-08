@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./global.scss";
-import LoadPage from "./pages/LoadPage";
 import Home from "./pages/Home";
+import LoadPage from "./components/intro/LoadPage";
 
 const App = () => {
   const [isLoad, setIsLoad] = useState(true);
-  const LOAD_MIN_SEC = 1000;
+  const LOAD_MIN_SEC = 1200;
 
   useEffect(() => {
     const load = () =>
@@ -18,8 +18,8 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* {isLoad && <LoadPage />} */}
-      <Home />
+      {isLoad && <LoadPage />}
+      {!isLoad && <Home />}
     </div>
   );
 };

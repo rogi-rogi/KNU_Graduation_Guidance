@@ -8,8 +8,8 @@ import BoardPage from "./BoardPage.js";
 import TestPage from "./TestPage.js";
 
 const Home = () => {
-  const titles = ["소개", "학점계산", "게시판", "Test"];
-  const [pageNum, setPageNum] = useState(1);
+  const titles = ["소개", "학점계산", "게시판"];
+  const [pageNum, setPageNum] = useState(0);
 
   const [pocketSubjectList, setPocketSubjectList] = useState([
     [],
