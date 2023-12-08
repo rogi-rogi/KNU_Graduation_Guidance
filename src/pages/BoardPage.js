@@ -1,52 +1,68 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Page.scss";
 import "../components/board/board.scss";
 import WritePage from "../components/board/WritePage";
 import ReadPage from "../components/board/ReadPage";
 import BoardListPage from "../components/board/BordListPage";
+import axios from "axios";
 
 const BoardPage = () => {
-  const [current, setCurrent] = useState("board");
+  const [page, setPage] = useState("board");
   const [selectTodo, setSelectTodo] = useState(null);
-
-  const [todos, setTodos] = useState([]);
-
-  const handleOnClickSelectTodo = (todo) => {
-    setSelectTodo(todo);
-    todo.show += 1;
-    changePageForRead();
+  const [server, setServer] = useState([]);
+  useEffect(()=>{
+    const readServer = async () => {
+      const res = await axios.get("http://localhost:3001/board");
+      setServer(res.data);
+    };
+    readServer();
+  });
+  const handleOnClickSelectTodo = async (todo) => {
+    try{
+      await axios.put(`http://localhost:3001/board/${todo.id}`,{
+        id: todo.id,
+        title: todo.title,
+        contents: todo.contents,
+        date: todo.date,
+        show: todo.show+1,
+      });
+      setSelectTodo(todo);
+      changePageForRead();
+    }catch(error){
+      console.error("서버에 데이터를 업데이트 하는 중 오류 발생");
+    }
   };
   const changePageForBoardList = () => {
-    setCurrent("board");
+    setPage("board");
   };
   const changePageForWrite = () => {
-    setCurrent("write");
+    setPage("write");
   };
   const changePageForRead = () => {
-    setCurrent("contents");
+    setPage("contents");
   };
   return (
     <div className="page" >
       <div className="page-content-wrapper">
         <div className="page-content">
-          {current === "board" && (
+          {page === "board" && (
             <BoardListPage
-              todos={todos}
+              server={server}
               changePageForWrite={changePageForWrite}
               handleOnClickSelectTodo={handleOnClickSelectTodo}
             />
           )}
-          {current === "write" && (
+          {page === "write" && (
             <WritePage
               changePageForBoardList={changePageForBoardList}
-              setTodos={setTodos}
-              todos={todos}
+              server={server}
+              setServer = {setServer}
             />
           )}
-          {current === "contents" && (
+          {page === "contents" && (
             <ReadPage
-              setTodos={setTodos}
-              todos={todos}
+              server = {server}
+              setServer = {setServer}
               changePageForBoardList={changePageForBoardList}
               selectTodo={selectTodo}
             />
@@ -58,3 +74,5 @@ const BoardPage = () => {
 };
 
 export default BoardPage;
+
+// json-server --host localhost --port 3001 ./database.json
