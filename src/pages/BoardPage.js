@@ -10,10 +10,13 @@ const BoardPage = () => {
   const [page, setPage] = useState("board");
   const [selectTodo, setSelectTodo] = useState(null);
   const [server, setServer] = useState([]);
+  const [serverShare, setServerShare] = useState([]);
   useEffect(() => {
     const readServer = async () => {
       const res = await axios.get("http://localhost:3001/board");
+      const resSh = await axios.get("http://localhost:3001/share");
       setServer(res.data);
+      setServerShare(resSh.data);
     };
     readServer();
   }, []);
@@ -57,6 +60,8 @@ const BoardPage = () => {
               changePageForBoardList={changePageForBoardList}
               server={server}
               setServer={setServer}
+              serverShare = {serverShare}
+              setServerShare ={setServerShare}
             />
           )}
           {page === "contents" && (
