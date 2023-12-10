@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import CreditContext from "../../contexts/CreditContext";
 import GroupContext from "../../contexts/GroupContext";
 import CalcTable from "./calc-table/CalcTable";
@@ -61,15 +61,28 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
   ];
   const [creditGraph, setCreditGraph] = useState([...initCreditGraph]);
   // 1. 입학연도 : 드롭다운
-  const filterSelectYear = (e) => {
-    setSelectYear(e.target.value);
-    if (e.target.value !== selectYear) {
-      setSelectGroup("*");
-      setSelectMajor("*");
-      setSelectAddGroup("*");
-      setSelectAddMajor("*");
-    }
-  };
+  // const filterSelectYear = (e) => {
+  //   setSelectYear(e.target.value);
+  //   if (e.target.value !== selectYear) {
+  //     setSelectGroup("*");
+  //     setSelectMajor("*");
+  //     setSelectAddGroup("*");
+  //     setSelectAddMajor("*");
+  //   }
+  // };
+  //
+  const filterSelectYear = useCallback((e) => {
+    setSelectYear((prevSelectYear) => {
+      const newSelectYear = e.target.value;
+      if (newSelectYear !== prevSelectYear) {
+        setSelectGroup("*");
+        setSelectMajor("*");
+        setSelectAddGroup("*");
+        setSelectAddMajor("*");
+      }
+      return e.target.value;
+    });
+  }, []);
   // 2. 소속 : 드롭다운
   const filterSelectUniver = (e) => {
     setSelectUniver(e.target.value);
@@ -431,5 +444,4 @@ const CalcSlide = ({ onClick, pocketSubjectList, setPocketSubjectList }) => {
     </>
   );
 };
-
 export default CalcSlide;
