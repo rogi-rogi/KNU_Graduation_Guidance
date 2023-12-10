@@ -1,10 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 
-const WritePage = ({ changePageForBoardList, server, setServer, serverShare, setServerShare }) => {
+const WritePage = ({ changePageForBoardList, server, setServer}) => {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  // const [shareData, setShareData] = useState(false);
   const handleOnClickSetTodos = async () => {
     try{
       const date = new Date();
@@ -80,25 +79,6 @@ const WritePage = ({ changePageForBoardList, server, setServer, serverShare, set
           };
         }}>작성완료</button>
         <button onClick={changePageForBoardList}>뒤로가기</button>
-      </div>
-      <div className="wirte-share-wrapper" style={{ paddingTop: '20px' }}>
-      {/* <button onClick={() => setShareData(true)}>공유하기</button>
-        {shareData === true && (
-          <div>
-            {Array.from({ length: 8 }).map((_, index) => {
-              const todo = serverShare[0][index];
-              return (
-                todo && (
-                  <div className="list-wrapper" key={index}>
-                    <div>{todo.title}</div>
-                    <div>{todo.credit}</div>
-                    <div >{todo.type}</div>
-                  </div>
-                )
-              );
-            })}
-          </div>
-        )} */}
       </div>
     </div>
   );

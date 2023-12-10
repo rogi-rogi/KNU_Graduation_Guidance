@@ -1,8 +1,13 @@
+import { useState } from "react";
+
 const BoardListPage = ({
   changePageForWrite,
   server,
   handleOnClickSelectTodo,
+  changePageForRoadMapPage,
+  serverShare,
 }) => {
+  const [shareData, setShareData] = useState(false)
   return (
     <div className="board-wrapper">
       <div style={{fontSize: '50px'}}>I-로드맵 게시판</div>
@@ -27,6 +32,12 @@ const BoardListPage = ({
       ))}
       <div className="list-button-wrapper">
         <button onClick={changePageForWrite}>글쓰기</button>
+        <button onClick={() => setShareData(true)}>공유하기</button>
+      </div>
+      <div style={{ paddingTop: '20px' }}>
+        {shareData === true && (
+          <div style={{textAlign:"center"}} onClick={changePageForRoadMapPage}>공유된 로드맵</div>
+        )}    
       </div>
     </div>
   );
