@@ -83,7 +83,7 @@ const WritePage = ({ changePageForBoardList, server, setServer, serverShare, set
         <button onClick={changePageForBoardList}>뒤로가기</button>
       </div>
       <div className="wirte-share-wrapper" style={{ paddingTop: '20px' }}>
-      <button onClick={() => setShareData(true)}>공유하기</button>
+      {/* <button onClick={() => setShareData(true)}>공유하기</button>
         {shareData === true && (
           <div>
             {Array.from({ length: 8 }).map((_, index) => {
@@ -99,7 +99,7 @@ const WritePage = ({ changePageForBoardList, server, setServer, serverShare, set
               );
             })}
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

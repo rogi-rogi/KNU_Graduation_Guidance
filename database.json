@@ -5,25 +5,39 @@
       "title": "123",
       "contents": "123",
       "date": "19:14",
-      "show": 0
+      "show": 2
     },
     {
       "id": 2,
       "title": "234",
       "contents": "234",
       "date": "19:14",
-      "show": 0
+      "show": 3
+    },
+    {
+      "id": 4,
+      "title": "222",
+      "contents": "222",
+      "date": "12:30",
+      "show": 5
     }
   ],
   "share": [
     {
-      "0": 
-      [
+      "0": [
         {
-          "id": "y2_u4_g1_m1", "type": "basic", "credit": 3, "title":"프로그래밍언어","semestee":2 
+          "id": "y2_u4_g1_m1",
+          "type": "basic",
+          "credit": 3,
+          "title": "프로그래밍언어",
+          "semestee": 2
         },
         {
-          "id": "y2_u4_g1_m2", "type": "basic", "credit": 3, "title":"프로그래밍언22어","semestee":2 
+          "id": "y2_u4_g1_m2",
+          "type": "basic",
+          "credit": 3,
+          "title": "프로그래밍언22어",
+          "semestee": 2
         }
       ],
       "1": {},

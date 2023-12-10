@@ -19,7 +19,7 @@ const BoardPage = () => {
       setServerShare(resSh.data);
     };
     readServer();
-  }, []);
+  }, [selectTodo]);
   const handleOnClickSelectTodo = async (todo) => {
     try {
       await axios.put(`http://localhost:3001/board/${todo.id}`, {

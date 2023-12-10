@@ -17,7 +17,7 @@ const BoardListPage = ({
         <div style={{width:'5%'}}>날짜</div>
         <div style={{width:'5%'}}>조회수</div>
       </div>
-      {server.map((todo,index)=>(
+      {server.reverse().map((todo,index)=>(
         <div className="list-wrapper" key={todo.id} onClick={() => handleOnClickSelectTodo(todo)}>
           <div style={{width:'5%'}}>{server.length-index}</div>
           <div style={{width:'85%'}}>{todo.title}</div>
