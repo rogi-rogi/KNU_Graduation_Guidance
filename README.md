@@ -14,7 +14,7 @@
 | :-----------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/95115004?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/8115130?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/151488428?v=4" width="150px"/> |
 |                   [@rogi-rogi](https://github.com/rogi-rogi)                    |                     [@geoni-ara](https://github.com/geoni)                     |                  [@seungjuncha](https://github.com/seungjuncha)                  |
-|                  <p style="white-space:nowrap">기획, 개발</p>                   |                                   데이터수집                                   |                                      디자인                                      |
+|                  <p style="white-space:nowrap">기획, 개발</p>                   |                                데이터수집, 개발                                |                                      디자인                                      |
 
 <hr/><br>
 
