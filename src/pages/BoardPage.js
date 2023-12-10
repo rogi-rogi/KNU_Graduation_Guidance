@@ -4,6 +4,7 @@ import "../components/board/board.scss";
 import WritePage from "../components/board/WritePage";
 import ReadPage from "../components/board/ReadPage";
 import BoardListPage from "../components/board/BordListPage";
+import RoadMapPage from "../components/board/RoadMapPage"
 import axios from "axios";
 
 const BoardPage = () => {
@@ -44,6 +45,9 @@ const BoardPage = () => {
   const changePageForRead = () => {
     setPage("contents");
   };
+  const changePageForRoadMapPage = () =>{
+    setPage("roadmap");
+  }
   return (
     <div className="page">
       <div className="page-content-wrapper">
@@ -51,7 +55,10 @@ const BoardPage = () => {
           {page === "board" && (
             <BoardListPage
               server={server}
+              serverShare = {serverShare}
+              setServerShare = {setServerShare}
               changePageForWrite={changePageForWrite}
+              changePageForRoadMapPage = {changePageForRoadMapPage}
               handleOnClickSelectTodo={handleOnClickSelectTodo}
             />
           )}
@@ -60,8 +67,6 @@ const BoardPage = () => {
               changePageForBoardList={changePageForBoardList}
               server={server}
               setServer={setServer}
-              serverShare = {serverShare}
-              setServerShare ={setServerShare}
             />
           )}
           {page === "contents" && (
@@ -70,6 +75,13 @@ const BoardPage = () => {
               setServer={setServer}
               changePageForBoardList={changePageForBoardList}
               selectTodo={selectTodo}
+            />
+          )}
+          {page === "roadmap" && (
+            <RoadMapPage
+              serverShare = {serverShare}
+              setServerShare = {setServerShare}
+              changePageForBoardList = {changePageForBoardList}
             />
           )}
         </div>
