@@ -2,24 +2,24 @@
   "board": [
     {
       "id": 1,
-      "title": "123",
-      "contents": "123",
-      "date": "19:14",
-      "show": 2
+      "title": "1111",
+      "contents": "11111",
+      "date": "12:49",
+      "show": 0
     },
     {
       "id": 2,
-      "title": "234",
-      "contents": "234",
-      "date": "19:14",
-      "show": 3
+      "title": "222",
+      "contents": "22222",
+      "date": "12:49",
+      "show": 0
     },
     {
-      "id": 4,
-      "title": "222",
-      "contents": "222",
-      "date": "12:30",
-      "show": 5
+      "id": 3,
+      "title": "3333",
+      "contents": "3333",
+      "date": "12:49",
+      "show": 0
     }
   ],
   "share": [

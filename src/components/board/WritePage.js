@@ -4,7 +4,7 @@ import axios from "axios";
 const WritePage = ({ changePageForBoardList, server, setServer, serverShare, setServerShare }) => {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  const [shareData, setShareData] = useState(false);
+  // const [shareData, setShareData] = useState(false);
   const handleOnClickSetTodos = async () => {
     try{
       const date = new Date();
@@ -28,27 +28,27 @@ const WritePage = ({ changePageForBoardList, server, setServer, serverShare, set
       console.error("서버에 데이터를 추가하는 중 오류 발생", error);
     }
   };
-  const resetShare = async () => {
-    try {
-      const emptyShareData = {
-        "0": [],
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-      };
+  // const resetShare = async () => {
+  //   try {
+  //     const emptyShareData = {
+  //       "0": [],
+  //       "1": [],
+  //       "2": [],
+  //       "3": [],
+  //       "4": [],
+  //       "5": [],
+  //       "6": [],
+  //       "7": [],
+  //     };
 
-      // JSON 파일에 빈 데이터 쓰기
-      await axios.post("http://localhost:3001/share", emptyShareData);
+  //     // JSON 파일에 빈 데이터 쓰기
+  //     await axios.post("http://localhost:3001/share", emptyShareData);
 
-      changePageForBoardList();
-    } catch (error) {
-      console.error("서버에서 데이터를 삭제하는 중 오류 발생:", error);
-    }
-  };
+  //     changePageForBoardList();
+  //   } catch (error) {
+  //     console.error("서버에서 데이터를 삭제하는 중 오류 발생:", error);
+  //   }
+  // };
 
 
   return(
@@ -77,7 +77,6 @@ const WritePage = ({ changePageForBoardList, server, setServer, serverShare, set
           else if(contents ==="") alert("내용이 입력되지 않았습니다.");
           else {
             handleOnClickSetTodos();
-            resetShare();
           };
         }}>작성완료</button>
         <button onClick={changePageForBoardList}>뒤로가기</button>
